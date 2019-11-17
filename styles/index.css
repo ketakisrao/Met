@@ -1,0 +1,31 @@
+body {
+  font-family: 'Lato', sans-serif;
+  color: white;
+  background-color: black;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  letter-spacing: 2px;
+}
+
+.chart-content {
+  margin: 0 5vw 0 5vw;
+  background-color: black;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+}
+
+.content {
+  display: grid;
+  margin: 5vw 5vw 2vw 5vw;
+  padding-left: 50px;
+  padding-right: 30px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  height: 50vh;
+}

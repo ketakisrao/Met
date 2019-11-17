@@ -8,17 +8,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <!-- Fonts --->
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
   <!-- Bootstrap --->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <!-- Custom CSS --->
-  <link rel="stylesheet" href="./styles/index.css" type="text/css">
   <link rel="stylesheet" href="./styles/d3-timeline.css" type="text/css">
+  <link rel="stylesheet" href="./styles/timeline.css" type="text/css">
 
   <!--Scripts --->
   <script src="./scripts/timeline-generator.js"></script>
@@ -26,25 +24,24 @@
 </head>
 <body>
   <div class="content">
-    <div class="chart-content">
-      <div class="timeline-header">
-          <h1>Katsushika Hotsukai</h1>
-      </div>
-      <div id="hokusai"></div>
-    </div>  
-    <div class="chart-content">
-      <div class="g-chart"></div>
-    </div>  
-    <div class="chart-content">
-      <div class="g-chart"></div>
-    </div>  
-    <div class="chart-content">
-      <div class="g-chart"></div>
-    </div>  
-    <div class="chart-content">
-      <div class="g-chart"></div>
-    </div>  
+    <div class="art-content">
+      <div class="art-title"></div>
+      <div class="content-subheader">DATE</div>
+      <div class="art-end-date"></div>
+      <br>
+      <div class="content-subheader">OBJECT TYPE</div>
+      <div class="art-type"></div>
+      <br>
+      <div class="content-subheader">MEDIUM</div>
+      <div class="art-medium"></div>
+    </div>
+    <div class="img-group">
+      <img id="art-img" src="https://images.metmuseum.org/CRDImages/as/original/DP317443.jpg"></img>
+    </div>
   </div>
+  <div class="chart-content">
+    <div id = "hokusai"></div>
+  </div> 
 </body>
 <script>
 
@@ -70,21 +67,21 @@
         let dataInput = dataResp[0].results;
         let datesInput = datesResp[0]["Date Count"];
         generateTimeline("hokusai", dataInput, datesInput, "#185bc7");
-        
-      }, function (jqXHR, textStatus, errorThrown) {
-          var x1 = data;
-          var x2 = datesData;
-          if (x1.readyState != 4) {
-              x1.abort();
-          }
-          if (x2.readyState != 4) {
-              x2.abort();
-          }
-          alert('GET REQUESTS FAILED');
+
+    }, function (jqXHR, textStatus, errorThrown) {
+        var x1 = data;
+        var x2 = datesData;
+        if (x1.readyState != 4) {
+            x1.abort();
+        }
+        if (x2.readyState != 4) {
+            x2.abort();
+        }
+        alert('GET REQUESTS FAILED');
     });
 
   })
-  
+
 </script>
 
 </html>
