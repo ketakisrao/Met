@@ -20,69 +20,58 @@
   <link rel="stylesheet" href="./styles/index.css" type="text/css">
   <link rel="stylesheet" href="./styles/d3-timeline.css" type="text/css">
 
-  <!--Scripts --->
-  <script src="./scripts/timeline-generator.js"></script>
+  <!-- Scripts --->
+  <script src="./scripts/timeline/timeline-generator.js"></script>
+  <script src="./scripts/timeline/ajax-index.js"></script>
 
 </head>
 <body>
-  <div class="content">
-    <div class="chart-content">
-      <div class="timeline-header">
-          <h1>Katsushika Hotsukai</h1>
-      </div>
-      <div id="hokusai"></div>
-    </div>  
-    <div class="chart-content">
-      <div class="g-chart"></div>
-    </div>  
-    <div class="chart-content">
-      <div class="g-chart"></div>
-    </div>  
-    <div class="chart-content">
-      <div class="g-chart"></div>
-    </div>  
-    <div class="chart-content">
-      <div class="g-chart"></div>
-    </div>  
+  <!-- MAP --->
+  <div class="map" id="map">
+    <h1>MAP IS GONNA BE HERE? </h1>
+  </div>
+
+  <!-- TIMELINES --->
+  <div class="timeline-area">
+
+    <div class="chart-list">
+      <div class="chart-content">
+        <div class="timeline-header">
+            <h1>Katsushika Hotsukai</h1>
+        </div>
+        <div id="hokusai"></div>
+      </div>  
+      <div class="chart-content">
+        <div class="timeline-header">
+            <h1>Edgar Degas</h1>
+        </div>
+        <div id="degas"></div>
+      </div>  
+      <div class="chart-content">
+        <div class="timeline-header">
+            <h1>Gustav Klimt</h1>
+        </div>
+        <div id="klimt"></div>
+      </div>  
+      <div class="chart-content">
+        <div class="timeline-header">
+            <h1>Auguste Rodin</h1>
+        </div>
+        <div id="rodin"></div>
+      </div>  
+      <div class="chart-content">
+        <div class="timeline-header">
+            <h1>Georg Pencz</h1>
+        </div>
+        <div id="pencz"></div>
+      </div>  
+    </div>
   </div>
 </body>
 <script>
 
   $( document ).ready(function() {
-
-    // !!! Note CORS enabled for localhost
-    let address = "http://127.0.0.1:5000/timeline?artist=hokusai";
-    let datesAddress = "http://127.0.0.1:5000/timeline-dates?artist=hokusai";
-
-    var data = $.ajax({
-      url: address,
-      type: 'GET',
-      cache: false
-    });
-
-    var datesData = $.ajax({
-      url: datesAddress,
-      type: 'GET',
-      cache: false
-    });
-
-    $.when(data, datesData).then(function (dataResp, datesResp) {
-        let dataInput = dataResp[0].results;
-        let datesInput = datesResp[0]["Date Count"];
-        generateTimeline("hokusai", dataInput, datesInput, "#185bc7");
-        
-      }, function (jqXHR, textStatus, errorThrown) {
-          var x1 = data;
-          var x2 = datesData;
-          if (x1.readyState != 4) {
-              x1.abort();
-          }
-          if (x2.readyState != 4) {
-              x2.abort();
-          }
-          alert('GET REQUESTS FAILED');
-    });
-
+    renderTimelines();
   })
   
 </script>

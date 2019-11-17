@@ -4,14 +4,24 @@ body {
   background-color: black;
 }
 
-.timeline-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 h1 {
   letter-spacing: 2px;
+}
+
+.map {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-list {
+  display: grid;
+  margin: 5vw 5vw 2vw 5vw;
+  padding-left: 50px;
+  padding-right: 30px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  height: 50vh;
 }
 
 .chart-content {
@@ -19,13 +29,11 @@ h1 {
   background-color: black;
   display: grid;
   grid-template-rows: 1fr 2fr;
+  margin: 2vh 0 2vh 0;
 }
 
-.content {
-  display: grid;
-  margin: 5vw 5vw 2vw 5vw;
-  padding-left: 50px;
-  padding-right: 30px;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  height: 50vh;
+.timeline-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
