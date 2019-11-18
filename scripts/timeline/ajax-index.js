@@ -12,8 +12,8 @@ function renderTimelines() {
 function doAjaxCall(artistName, color) {
 
   // !!! Note CORS enabled for localhost
-  let address = "http://127.0.0.1:5000/timeline?artist=" + artistName;
-  let datesAddress = "http://127.0.0.1:5000/timeline-dates?artist=" + artistName;
+  let address = "https://met-server-nyc.herokuapp.com/timeline?artist=" + artistName;
+  let datesAddress = "https://met-server-nyc.herokuapp.com/timeline-dates?artist=" + artistName;
 
   var data = $.ajax({
     url: address,

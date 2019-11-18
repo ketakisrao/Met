@@ -47,9 +47,9 @@
 
   $( document ).ready(function() {
 
-    // !!! Note CORS enabled for localhost
-    let address = "http://127.0.0.1:5000/timeline?artist=hokusai";
-    let datesAddress = "http://127.0.0.1:5000/timeline-dates?artist=hokusai";
+  // !!! Note CORS enabled for localhost
+  let address = "https://met-server-nyc.herokuapp.com/timeline?artist=hokusai";
+  let datesAddress = "https://met-server-nyc.herokuapp.com/timeline-dates?artist=hokusai";
 
     var data = $.ajax({
       url: address,
