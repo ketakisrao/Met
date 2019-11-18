@@ -4,10 +4,6 @@ body {
   background-color: black;
 }
 
-h1 {
-  letter-spacing: 2px;
-}
-
 .map {
   height: 100vh;
   display: flex;
@@ -36,4 +32,9 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 2vh;
+}
+
+.timeline-header h1 { 
+  letter-spacing: 4px;
 }

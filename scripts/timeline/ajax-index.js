@@ -1,10 +1,10 @@
 const artists = ["hokusai", "degas", "klimt", "rodin", "pencz"];
-const colors = {"hokusai": "blue", "degas": "blue", "klimt": "blue", "rodin": "blue", "pencz": "blue"};
+const colors = {"hokusai": "#586BA4", "degas": "#324376", "klimt": "#F5DD90", "rodin": "#F68E5F", "pencz": "#F76C5E"};
 
 function renderTimelines() {
   
   for (let name of artists) {
-    doAjaxCall(name, "#00cccc");
+    doAjaxCall(name, colors[name]);
   }
   
 }
