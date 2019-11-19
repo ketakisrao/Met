@@ -20,6 +20,7 @@
 
   <!--Scripts --->
   <script src="./scripts/timeline/timeline-generator.js"></script>
+  <script src="./scripts/timeline/ajax-timeline.js"></script>
 
 </head>
 <body>
@@ -40,46 +41,13 @@
     </div>
   </div>
   <div class="chart-content">
-    <div id = "hokusai"></div>
+    <div id = "degas"></div>
   </div> 
 </body>
 <script>
 
   $( document ).ready(function() {
-
-  // !!! Note CORS enabled for localhost
-  let address = "https://met-server-nyc.herokuapp.com/timeline?artist=rodin";
-  let datesAddress = "https://met-server-nyc.herokuapp.com/timeline-dates?artist=rodin";
-
-    var data = $.ajax({
-      url: address,
-      type: 'GET',
-      cache: false
-    });
-
-    var datesData = $.ajax({
-      url: datesAddress,
-      type: 'GET',
-      cache: false
-    });
-
-    $.when(data, datesData).then(function (dataResp, datesResp) {
-        let dataInput = dataResp[0].results;
-        let datesInput = datesResp[0]["Date Count"];
-        generateTimeline("hokusai", dataInput, datesInput, "#185bc7", true);
-
-    }, function (jqXHR, textStatus, errorThrown) {
-        var x1 = data;
-        var x2 = datesData;
-        if (x1.readyState != 4) {
-            x1.abort();
-        }
-        if (x2.readyState != 4) {
-            x2.abort();
-        }
-        alert('GET REQUESTS FAILED');
-    });
-
+    doAjaxArtistCall("degas", "#586BA4", true)
   })
 
 </script>

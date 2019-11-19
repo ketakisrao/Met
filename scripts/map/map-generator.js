@@ -1,4 +1,4 @@
-function renderMap(){
+function renderMap(data){
 
     const map = d3.select("#country-map");
 
@@ -27,10 +27,9 @@ function renderMap(){
     // Read all the data
     d3.queue()
       .defer(d3.json, "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")  // World shape
-      .defer(d3.csv, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_gpsLocSurfer.csv") // Position of circles
       .await(ready);
 
-    function ready(error, world, data) {
+    function ready(error, world) {
       if (error) throw error;
 
       var countries = topojson.feature(world, world.objects.countries).features;
@@ -41,16 +40,16 @@ function renderMap(){
           .attr("d", path)
           .style("stroke", "white")
           .style("stroke-width", "0.5")
-          // .style("fill", function(d) {
-          //   let countryName = d.properties.name;
-          //   let index = noodleIndex(countryName, data);
+          .style("fill", function(d) {
+            let countryName = d.properties.name;
+            let index = countryIndex(countryName, data);
 
-          //   if (index !== -1) {
-          //     return interpolateOranges(parseInt(data[index]["n"])/100);
-          //   } else {
-          //     return "black";
-          //   }
-          // })
+            if (index !== -1) {
+              return d3.interpolateOranges(parseInt(data[index]["n"])/1000);
+            } else {
+              return "black";
+            }
+          })
           // .on('mouseover', function(d, i) {
           //   let countryName = d.properties.name;
           //   let idx = noodleIndex(countryName, data);
@@ -73,4 +72,20 @@ function renderMap(){
   function zoomed(){
     g.attr("transform", d3.event.transform);
   }  
+
+  function countryIndex(countryName, data) {
+    let idx = data.findIndex(field => {
+      let countryInData = capitalizeWords(field["country"]);
+      if (countryName === "United States of America" && field["country"].includes("United States")) {
+        return true;
+      }
+      return countryInData === countryName;
+    });
+
+    return idx;
+  }
+
+  function capitalizeWords(str){
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
 }

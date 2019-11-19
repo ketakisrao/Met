@@ -4,12 +4,12 @@ const colors = {"hokusai": "#586BA4", "degas": "#324376", "klimt": "#F5DD90", "r
 function renderTimelines() {
   
   for (let name of artists) {
-    doAjaxCall(name, colors[name]);
+    doAjaxArtistCall(name, colors[name], false);
   }
   
 }
 
-function doAjaxCall(artistName, color) {
+function doAjaxArtistCall(artistName, color, renderTooltip) {
 
   // !!! Note CORS enabled for localhost
   let address = "https://met-server-nyc.herokuapp.com/timeline?artist=" + artistName;
@@ -30,7 +30,7 @@ function doAjaxCall(artistName, color) {
   $.when(data, datesData).then(function (dataResp, datesResp) {
       let dataInput = dataResp[0].results;
       let datesInput = datesResp[0]["Date Count"];
-      generateTimeline(artistName, dataInput, datesInput, color, false);
+      generateTimeline(artistName, dataInput, datesInput, color, renderTooltip);
       
     }, function (jqXHR, textStatus, errorThrown) {
         var x1 = data;

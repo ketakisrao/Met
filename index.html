@@ -7,6 +7,8 @@
   <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <script src="https://d3js.org/d3-color.v1.min.js"></script>
+  <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
 
   <!-- AJAX --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -27,8 +29,10 @@
   <!-- Scripts --->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="./scripts/timeline/timeline-generator.js"></script>
-  <script src="./scripts/timeline/map-generator.js"></script>
-  <script src="./scripts/timeline/ajax-index.js"></script>
+  <script src="./scripts/timeline/ajax-timeline.js"></script>
+
+  <script src="./scripts/map/map-generator.js"></script>
+  <script src="./scripts/map/ajax-map.js"></script>
 
 </head>
 <body>
@@ -90,8 +94,8 @@ ScrollReveal().reveal('.timeline-5', { delay: 500,reset: true});
 
 
   $( document ).ready(function() {
+    doAjaxMapCall();
     renderTimelines();
-    renderMap();
   })
 
 </script>
