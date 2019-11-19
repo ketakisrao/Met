@@ -2,7 +2,7 @@ function renderMap(data){
 
     const map = d3.select("#country-map");
 
-    const width = map.node().getBoundingClientRect().width * 0.8;
+    const width = map.node().getBoundingClientRect().width;
     const height = width / 2;
     var border = 1;
     var bordercolor = 'white';
@@ -23,7 +23,7 @@ function renderMap(data){
         ])
         .on("zoom", zoomed);
 
-    map.call(zoom);
+    // map.call(zoom);
 
     const svg = map.append("svg")
         .attr("width", width)

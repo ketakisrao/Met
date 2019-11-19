@@ -8,7 +8,7 @@ body {
 
 .met-title{
   font-family: serif;
-  margin-top: 150px;
+  margin-top: 130px;
   text-align: center;
   font-weight: bold;
 }
@@ -22,7 +22,7 @@ body {
 }
 
 .btns-container{
-  margin-top: 130px;
+  margin-top: 100px;
   text-align: center;
   margin-bottom: 70px;
 }
@@ -32,7 +32,7 @@ body {
 }
 
 .select-map{
-  background-color: deeppink;
+background-color: deeppink;
  border: none;
  color: white;
  padding: 15px 32px;
@@ -62,6 +62,11 @@ body {
 }
 
 /* MAP */
+
+.map-container{
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 .map {
   height: 100vh;
