@@ -2,7 +2,7 @@ function renderMap(data){
 
     const map = d3.select("#country-map");
 
-    const width = map.node().getBoundingClientRect().width;
+    const width = map.node().getBoundingClientRect().width * 0.8;
     const height = width / 2;
     var border = 1;
     var bordercolor = 'white';
