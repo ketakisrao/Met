@@ -1,8 +1,67 @@
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: serif;
   color: white;
   background-color: black;
 }
+
+/* Intoduction Page */
+
+.met-title{
+  font-family: serif;
+  margin-top: 150px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.met-intro{
+
+  width:40%;
+  /* text-align: center; */
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.btns-container{
+  margin-top: 130px;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.btns-container button{
+  display:inline-block;
+}
+
+.select-map{
+  background-color: deeppink;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ font-size: 16px;
+}
+
+.select-timeline{
+  background-color: lightseagreen;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ font-size: 16px;
+}
+
+.select-mode{
+ background-color: coral;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ font-size: 16px;
+}
+
+/* MAP */
 
 .map {
   height: 100vh;
@@ -11,6 +70,7 @@ body {
   justify-content: center;
 }
 
+/* Timeline */
 .chart-list {
   display: grid;
   margin: 5vw 5vw 2vw 5vw;
@@ -35,6 +95,6 @@ body {
   padding-bottom: 2vh;
 }
 
-.timeline-header h1 { 
+.timeline-header h1 {
   letter-spacing: 4px;
 }

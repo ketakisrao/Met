@@ -1,5 +1,5 @@
 function generateTimeline(id, data, datesData, color, enableToolTip) {
-  
+
   // Margin conventions
   var margin = {top: 0, right: 30, bottom: 30, left: 50};
   var constWidth = d3.select("#" + id).node().clientWidth;
@@ -7,7 +7,7 @@ function generateTimeline(id, data, datesData, color, enableToolTip) {
       height = 125 - margin.top - margin.bottom;
 
   var strokeWidth = 10;
-  
+
   // Appends the svg to the chart-container div
   var svg = d3.select("#" + id)
               .append("svg")
@@ -17,25 +17,25 @@ function generateTimeline(id, data, datesData, color, enableToolTip) {
 
   if (enableToolTip) {
     var tooltip = d3.select("#" + id)
-                    .append("div")   
-                    .attr("class", "tooltip")               
+                    .append("div")
+                    .attr("class", "tooltip")
                     .style("opacity", 0);
-  }   
+  }
 
-  // Creates the xScale 
+  // Creates the xScale
   var xScale = d3.scaleTime()
     .range([0, width]);
 
   // Creates the yScale
   var yScale = d3.scaleLinear()
-    .range([height, 0]);  
+    .range([height, 0]);
 
   // Defines the x axis styles
   var xAxis = d3.axisBottom()
                 .scale(xScale)
                 .tickPadding(10)
                 .ticks(10)
-                .tickFormat(function(d) { return d * 1}) 
+                .tickFormat(function(d) { return d * 1})
 
   ready(data);
 
@@ -45,18 +45,18 @@ function generateTimeline(id, data, datesData, color, enableToolTip) {
     xScale.domain(d3.extent(data, function(d) { return d["Object End Date"]; }));
 
     // Defines the yScale max
-    yScale.domain([0, 100]); 
-     
-    // Appends the x axis    
+    yScale.domain([0, 100]);
+
+    // Appends the x axis
     var xAxisGroup = svg.append("g")
                         .attr("class", "x axis")
                         .attr("transform", function() {
                           if (enableToolTip) {
                             return "translate(0," + height + ")";
-                          } 
+                          }
                           return "translate(0," + height/2 + ")";
                         })
-                        .call(xAxis);  
+                        .call(xAxis);
 
     // Binds data to strips
     var drawstrips = svg.selectAll("line.percent")
@@ -64,8 +64,8 @@ function generateTimeline(id, data, datesData, color, enableToolTip) {
                         .enter()
                         .append("line")
                         .attr("class", "percentline")
-                        .attr("x1", function(d,i) { return xScale(d["Object End Date"]); }) 
-                        .attr("x2", function(d) { return xScale(d["Object End Date"]); })  
+                        .attr("x1", function(d,i) { return xScale(d["Object End Date"]); })
+                        .attr("x2", function(d) { return xScale(d["Object End Date"]); })
                         // .attr("y1", 50)
                         // .attr("y2", 100)
                         .attr("y1", function() {
@@ -106,15 +106,15 @@ function generateTimeline(id, data, datesData, color, enableToolTip) {
         tooltip.transition(300)
               .style("opacity", 1)
         tooltip.html(numWorks + " artpiece(s)")
-        
+
         var offset = tooltip.node().offsetWidth + 10;
 
         let topDisplacement = d3.select("#"+id).node().getBoundingClientRect().top;
-                              
+
         console.log(topDisplacement);
         tooltip.style("left", (d3.event.pageX - offset) + "px")
                 .style("top", (topDisplacement) + "px")
-        
+
         // Set img
         let img = d3.select("#art-img")
                     .attr("src", d["Image URL"])
@@ -123,7 +123,7 @@ function generateTimeline(id, data, datesData, color, enableToolTip) {
 
         d3.select(".art-title")
           .html(artTitle)
-        
+
         d3.select(".art-type")
           .html(d["Object Name"])
 
@@ -138,12 +138,12 @@ function generateTimeline(id, data, datesData, color, enableToolTip) {
           .transition().duration(100)
           .attr("y1", 50)
           .style("stroke-width", strokeWidth)
-          .style("stroke", color)  
+          .style("stroke", color)
           .style("opacity", 0.4);
 
         tooltip.transition(300)
           .style("opacity", 0)
-      })  
-    }                 
-  }  
+      })
+    }
+  }
 }

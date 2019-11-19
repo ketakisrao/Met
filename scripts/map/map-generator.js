@@ -4,25 +4,43 @@ function renderMap(data){
 
     const width = map.node().getBoundingClientRect().width;
     const height = width / 2;
+    var border = 1;
+    var bordercolor = 'white';
 
     const projection = d3.geoMercator()
-                         .translate([ width/2, height/2 ]); 
+        .translate([width / 2, height / 2]);
     const path = d3.geoPath().projection(projection);
-    
+
     const zoom = d3.zoom()
-                  .scaleExtent([1, 3])
-                  .translateExtent([[0,0], [width, height]])
-                  .extent([[0, 0], [width, height]])
-                  .on("zoom", zoomed);
-    
+        .scaleExtent([1, 3])
+        .translateExtent([
+            [0, 0],
+            [width, height]
+        ])
+        .extent([
+            [0, 0],
+            [width, height]
+        ])
+        .on("zoom", zoomed);
+
     map.call(zoom);
 
     const svg = map.append("svg")
-                  .attr("width", width)
-                  .attr("height", height)
+        .attr("width", width)
+        .attr("height", height)
+        .attr("border", border);
+
+    // var borderPath = svg.append("rect")
+    //     .attr("x", 0)
+    //     .attr("y", 0)
+    //     .attr("height", h)
+    //     .attr("width", w)
+    //     .style("stroke", bordercolor)
+    //     .style("fill", "none")
+    //     .style("stroke-width", border);
 
     const g = svg.append("g")
-                 .attr("id", "country-paths");
+        .attr("id", "country-paths");
 
     // Read all the data
     d3.queue()
@@ -71,7 +89,7 @@ function renderMap(data){
 
   function zoomed(){
     g.attr("transform", d3.event.transform);
-  }  
+  }
 
   function countryIndex(countryName, data) {
     let idx = data.findIndex(field => {
