@@ -30,6 +30,13 @@ function renderMap(data){
         .attr("height", height)
         .attr("border", border);
 
+    var tooltip = d3.select("#spiral-chart")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .text("a simple tooltip");
+
     // var borderPath = svg.append("rect")
     //     .attr("x", 0)
     //     .attr("y", 0)
@@ -63,28 +70,47 @@ function renderMap(data){
             let countryName = d.properties.name;
             let index = countryIndex(countryName, data);
             if (index !== -1) {
-              return d3.interpolateOranges(parseInt(data[index]["n"])/1000);
+              return d3.interpolateOranges(parseInt(data[index]["n"])/500);
             } else {
               return "black";
             }
           })
-          // .on('mouseover', function(d, i) {
-          //   let countryName = d.properties.name;
-          //   let idx = noodleIndex(countryName, data);
-          //   if (idx !== -1) {
-          //     var currentState = this;
-          //     d3.select(this)
-          //       .style('fill', "red");
-          //   }
-          // })
-          // .on('mouseout', function(d, i) {
-          //   let countryName = d.properties.name;
-          //   let idx = noodleIndex(countryName, data);
-          //   if (idx !== -1) {
-          //     var currentState = this;
-          //     d3.select(this).style('fill', interpolateOranges(parseInt(data[idx]["n"])/100));
-          //   }
-          // });
+          .on('mouseover', function(d, i) {
+            let countryName = d.properties.name;
+            let idx = countryIndex(countryName, data);
+            if (idx !== -1) {
+              var currentState = this;
+              d3.select(this)
+                .style('fill', "red");
+
+              tooltip.transition()		
+                .duration(200)		
+                .style("opacity", 1);	
+
+              let string = `<h5>${countryName}</h5>
+                            <b>${data[idx]["n"]} Artworks</b>`;
+
+              tooltip.html(string)	
+                      .style("left", (d3.event.pageX + 10) + "px")		
+                      .style("top", (d3.event.pageY - 28) + "px")
+                      .style("display", "block");	
+            }
+          })
+          .on("mousemove", function(){
+            tooltip.style("top", (d3.event.pageY - 28)+"px")
+                   .style("left",(d3.event.pageX + 10)+"px");
+          })
+          .on('mouseout', function(d, i) {
+            let countryName = d.properties.name;
+            let idx = countryIndex(countryName, data);
+            if (idx !== -1) {
+              var currentState = this;
+              d3.select(this).style('fill', d3.interpolateOranges(parseInt(data[idx]["n"])/500));
+            }
+
+            tooltip.html("HELLO")	
+            .style("display", "none");	
+          });
   }
 
   function zoomed(){
