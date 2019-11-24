@@ -35,6 +35,9 @@
     <script src="./scripts/map/map-generator.js"></script>
     <script src="./scripts/map/ajax-map.js"></script>
 
+    <script src="./scripts/spiral/spiral-generator.js"></script>
+    <script src="./scripts/spiral/ajax-spiral.js"></script>
+
 </head>
 
 <body>
@@ -57,12 +60,15 @@
 
     <!-- MAP --->
     <div class="map-container">
-
         <div class="met-map" id="country-map">
-
         </div>
     </div>
 
+    <!-- SPIRAL --->
+    <div class="spiral-container">
+        <div class="spiral" id="spiral-chart">
+        </div>
+    </div>
 
     <!-- TIMELINES --->
     <div class="timeline-area">
@@ -101,26 +107,26 @@
             </div>
         </div>
     </div>
-    <!-- <script src="scripts/script.js"></script> -->
 
 </body>
 <script>
-    ScrollReveal().reveal('.met-title'), {
-        delay: 500,
-        reset: true
-    };
-    ScrollReveal().reveal('.met-intro-target'), {
-        delay: 1000,
-        reset: true
-    };
-    ScrollReveal().reveal('.btns-container', {
-        delay: 500,
-        reset: true
-    });
-    ScrollReveal().reveal('.met-map', {
-        delay: 500,
-        reset: true
-    });
+    // ScrollReveal().reveal('.met-title'), {
+    //     delay: 500,
+    //     reset: true
+    // };
+    // ScrollReveal().reveal('.met-intro-target'), {
+    //     delay: 1000,
+    //     reset: true
+    // };
+    // ScrollReveal().reveal('.btns-container', {
+    //     delay: 500,
+    //     reset: true
+    // });
+    // ScrollReveal().reveal('.met-map', {
+    //     delay: 500,
+    //     reset: true
+    // });
+
     // ScrollReveal().reveal('.timeline-1', {
     //     delay: 500,
     //     reset: true
@@ -142,11 +148,11 @@
     //     reset: true
     // });
 
-
-
     $(document).ready(function() {
         doAjaxMapCall();
+        doAjaxSpiralCall();
         renderTimelines();
+        
     })
 </script>
 

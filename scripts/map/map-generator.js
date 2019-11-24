@@ -51,6 +51,7 @@ function renderMap(data){
       if (error) throw error;
 
       var countries = topojson.feature(world, world.objects.countries).features;
+
       g.selectAll(".country")
           .data(countries)
           .enter().insert("path", ".graticule")
@@ -61,7 +62,6 @@ function renderMap(data){
           .style("fill", function(d) {
             let countryName = d.properties.name;
             let index = countryIndex(countryName, data);
-
             if (index !== -1) {
               return d3.interpolateOranges(parseInt(data[index]["n"])/1000);
             } else {

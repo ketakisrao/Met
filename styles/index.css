@@ -62,7 +62,6 @@ background-color: deeppink;
 }
 
 /* MAP */
-
 .map-container{
   text-align: center;
   margin-bottom: 10px;
@@ -102,4 +101,18 @@ background-color: deeppink;
 
 .timeline-header h1 {
   letter-spacing: 4px;
+}
+
+/* SPIRAL */
+.spiral-container{
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.spiral {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
