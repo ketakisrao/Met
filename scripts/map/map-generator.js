@@ -2,8 +2,8 @@ function renderMap(data){
 
     const map = d3.select("#country-map");
 
-    const width = map.node().getBoundingClientRect().width;
-    const height = width / 2;
+    const width = map.node().parentNode.parentNode.getBoundingClientRect().width * 0.7;
+    const height = map.node().parentNode.parentNode.getBoundingClientRect().height * 0.7;
     var border = 1;
     var bordercolor = 'white';
 
@@ -11,6 +11,12 @@ function renderMap(data){
         .translate([width / 2, height / 2]);
     const path = d3.geoPath().projection(projection);
 
+    var color = d3.scaleLinear()
+                  .domain([0, 1000])
+                  .interpolate(d3.interpolateHcl)
+                  .range([d3.rgb("#C99C92"), d3.rgb('#FF5733')]);
+
+                        
     const zoom = d3.zoom()
         .scaleExtent([1, 3])
         .translateExtent([
@@ -23,7 +29,7 @@ function renderMap(data){
         ])
         .on("zoom", zoomed);
 
-    // map.call(zoom);
+    map.call(zoom);
 
     const svg = map.append("svg")
         .attr("width", width)
@@ -70,7 +76,11 @@ function renderMap(data){
             let countryName = d.properties.name;
             let index = countryIndex(countryName, data);
             if (index !== -1) {
-              return d3.interpolateOranges(parseInt(data[index]["n"])/500);
+              let count = parseInt(data[index]["n"]);
+              if (count >= 1000) {
+                count = 1000;
+              }
+              return color(count);
             } else {
               return "black";
             }
@@ -104,12 +114,15 @@ function renderMap(data){
             let countryName = d.properties.name;
             let idx = countryIndex(countryName, data);
             if (idx !== -1) {
-              var currentState = this;
-              d3.select(this).style('fill', d3.interpolateOranges(parseInt(data[idx]["n"])/500));
+              let count = parseInt(data[idx]["n"]);
+              if (count >= 1000) {
+                count = 1000;
+              }
+              d3.select(this).style('fill', color(count));
             }
 
             tooltip.html("HELLO")	
-            .style("display", "none");	
+                    .style("display", "none");	
           });
   }
 

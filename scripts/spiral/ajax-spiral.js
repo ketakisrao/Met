@@ -1,7 +1,7 @@
 function doAjaxSpiralCall() {
 
   // !!! Note CORS enabled for localhost
-  let address = "https://met-server-nyc.herokuapp.com/counts-by-date";
+  let address = "https://met-server-nyc.herokuapp.com/counts-by-date?dynasty=edo";
 
   var data = $.ajax({
     url: address,

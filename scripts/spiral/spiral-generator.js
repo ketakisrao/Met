@@ -1,7 +1,8 @@
 function renderSpiral(data) {
 
-  var height = d3.select(".spiral-container").node().getBoundingClientRect().height;
-  var width = height;
+  let container = d3.select(".spiral").node();
+  var height = container.getBoundingClientRect().height;
+  var width = container.getBoundingClientRect().width;
 
   var start = 0,
       end = 2.25,
@@ -18,38 +19,7 @@ function renderSpiral(data) {
   //               .range(['#d73027', '#1a9850'])
   //               .interpolate(d3.interpolateHcl);
 
-  var colors = ["#F97F51",
-    "#1B9CFC",
-    "#9AECDB",
-    "#D6A2E8",
-    "#FC427B",
-    "#6D214F",
-    "#58B19F",
-    "#25CCF7",
-    "#F97F51",
-    "#1B9CFC",
-    "#9AECDB",
-    "#D6A2E8",
-    "#FC427B",
-    "#6D214F",
-    "#58B19F",
-    "#25CCF7",
-    "#F97F51",
-    "#1B9CFC",
-    "#9AECDB",
-    "#D6A2E8",
-    "#FC427B",
-    "#6D214F",
-    "#58B19F",
-    "#25CCF7",
-    "#F97F51",
-    "#1B9CFC",
-    "#9AECDB",
-    "#D6A2E8",
-    "#FC427B",
-    "#6D214F",
-    "#58B19F",
-    "#25CCF7",]
+  var colors = ["#FF7858", "#6DB8BD", "#956DBD"];
 
   var r = d3.min([width, height]) / 2 - 40;
 
@@ -164,7 +134,7 @@ function renderSpiral(data) {
     // place text along spiral
     .attr("xlink:href", "#spiral")
     .style("fill", function(d){
-      return colors[d["Group"]];
+      return colors[d["Group"]%3];
     })
     .attr("startOffset", function(d){
       return ((d.linePer / spiralLength) * 100) + "%";
@@ -172,19 +142,19 @@ function renderSpiral(data) {
 
 
   var tooltip = d3.select("#spiral-chart")
-  .append('div')
-  .attr('class', 'tooltip');
+                  .append('div')
+                  .attr('class', 'tooltip');
 
   tooltip.append('div')
-  .attr('class', 'date');
+        .attr('class', 'date');
   tooltip.append('div')
-  .attr('class', 'value');
+        .attr('class', 'value');
 
   svg.selectAll("rect")
   .on('mouseover', function(d) {
 
       tooltip.select('.date').html("Date: <b>" + d["Date"] + "</b>");
-      tooltip.select('.value').html("Value: <b>" + d["Count"] + "<b>");
+      tooltip.select('.value').html("# Artworks: <b>" + d["Count"] + "<b>");
 
       d3.select(this)
       .style("fill","#FFFFFF")
@@ -204,7 +174,7 @@ function renderSpiral(data) {
       .style("fill", function(d) {
         //return "white";
         //return d3.interpolateSpectral(parseInt(d["Group"])/maxGroup);
-        return colors[parseInt(d["Group"])];
+        return colors[parseInt(d["Group"])%3];
       })
       .style("stroke", "none")
 

@@ -42,32 +42,52 @@
 
 <body>
 
-    <div class="met-title" id="title">
-        <h1>The Metropolitan Museum of Art Visualizations</h1>
-    </div>
-    <div class="met-intro">
-        <p class="met-intro-target">Located in the heart of New York City, the Metropolitan Museum of Art is the largest museum in the United States. The permanent collection consists of artwork created from Ancient Egypt, Ancient Asia, Medieval Europe, to contemporary American
-            art, attracting tourists from all over the world. </p>
-        <p class="met-intro-target">The Met Visualizations is a data visualization project that curates the art works digitally, demonstrates the Met collection in digestible ways and provides interactive art viewing experience for the audience. </p>
-        <p class="met-intro-target">Data source from<a target="_blank" href="https://github.com/metmuseum/openaccess"> the Met Open Access. </a></p>
-    </div>
+    <div class="met-title-container">
+      <div class="met-title" id="title">
+          <h1>The Metropolitan Museum of Art Visualizations</h1>
+      </div>
+      <div class="met-intro">
+          <p class="met-intro-target">Located in the heart of New York City, the Metropolitan Museum of Art is the largest museum in the United States. The permanent collection consists of artwork created from Ancient Egypt, Ancient Asia, Medieval Europe, to contemporary American
+              art, attracting tourists from all over the world. </p>
+          <p class="met-intro-target">The Met Visualizations is a data visualization project that curates the art works digitally, demonstrates the Met collection in digestible ways and provides interactive art viewing experience for the audience. </p>
+          <p class="met-intro-target">Data source from<a target="_blank" href="https://github.com/metmuseum/openaccess"> the Met Open Access. </a></p>
+      </div>
 
-    <div class="btns-container">
-        <button type="button" name="button" class="select-map">World Map</button>
-        <button type="button" name="button" class="select-timeline">5 Artists Work Timeline</button>
-        <button type="button" name="button" class="select-mode">Place Holder</button>
+      <div class="btns-container">
+          <button type="button" name="button" class="select-map">World Map</button>
+          <button type="button" name="button" class="select-timeline">Artist Timelines</button>
+          <button type="button" name="button" class="select-mode">Place Holder</button>
+      </div>
     </div>
-
     <!-- MAP --->
     <div class="map-container">
+      <div class="map-title">
+        <h2>Origins of the Met Collection</h2>
+      </div>
+      <div class="map-content">
         <div class="met-map" id="country-map">
         </div>
+      </div>
     </div>
 
     <!-- SPIRAL --->
     <div class="spiral-container">
+      <div class="spiral-title">
+        <h2>Number of Artworks by Dynasty</h2>
+      </div>
+      <div class="spiral-content">
         <div class="spiral" id="spiral-chart">
         </div>
+        <div class="spiral-description">
+          <select class="dynasty-selector" name="dynasty-select">
+              <option value="edo" selected>Edo</option>
+              <option value="classical">Classical</option>
+              <option value="qing">Qing</option>
+          </select>
+          <br>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+      </div>
     </div>
 
     <!-- TIMELINES --->

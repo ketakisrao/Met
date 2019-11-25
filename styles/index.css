@@ -6,72 +6,116 @@ body {
 
 /* Intoduction Page */
 
+.met-title-container {
+  height: 100vh;
+}
+
 .met-title{
   font-family: serif;
-  margin-top: 130px;
+  margin-top: 20vh;
   text-align: center;
   font-weight: bold;
 }
 
 .met-intro{
-
-  width:40%;
-  /* text-align: center; */
+  width: 40vw;
+  height: 40vh;
   margin: 0 auto;
-  margin-top: 40px;
+  padding: 5px;
+  text-align: left;
+  color: white;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .btns-container{
-  margin-top: 100px;
+  height: 15vh;
+  width: 40vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 70px;
+  /* border: 1px solid red; */
 }
 
 .btns-container button{
-  display:inline-block;
+  margin: 0 2px 0 2px;
+  padding: 15px 32px;
+  width: 13vw;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  background: none;
 }
 
 .select-map{
-background-color: deeppink;
- border: none;
- color: white;
- padding: 15px 32px;
- text-align: center;
- text-decoration: none;
- font-size: 16px;
+  border: 1px solid deeppink;
+  color: deeppink;
+}
+
+.select-map:hover {
+  color: white;
+  background-color: deeppink;
+  transition: 0.5s;
 }
 
 .select-timeline{
+  border: 1px solid lightseagreen;
+  color: lightseagreen;
+}
+
+.select-timeline:hover {
+  color: white;
   background-color: lightseagreen;
- border: none;
- color: white;
- padding: 15px 32px;
- text-align: center;
- text-decoration: none;
- font-size: 16px;
+  transition: 0.5s;
 }
 
 .select-mode{
- background-color: coral;
- border: none;
- color: white;
- padding: 15px 32px;
- text-align: center;
- text-decoration: none;
- font-size: 16px;
+  border: 1px solid coral;
+  color: coral
+}
+
+.select-mode:hover {
+  color: white;
+  background-color: coral;
+  transition: 0.5s;
 }
 
 /* MAP */
 .map-container{
-  text-align: center;
-  margin-bottom: 10px;
+  height: 100vh;
+  width: 100vw;
 }
 
-.map {
-  height: 100vh;
+.map-title {
+  height: 20vh;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.map-title h2 {
+  letter-spacing: 2px;
+}
+
+.map-content {
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.met-map {
+  /* border: 1px solid blue; */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
 /* Timeline */
@@ -118,21 +162,54 @@ background-color: deeppink;
   display: none;
 }
 
-.tooltip h5, b, p {
-  color: black
+.tooltip h5, b {
+  color: black;
 }
-
 
 /* SPIRAL */
-.spiral-container{
-  display: block;
+.spiral-title {
+  height: 20vh;
   text-align: center;
-  margin-bottom: 10px;
-}
-
-.spiral {
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.spiral-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 80vh;
+  width: 90vw;
+  text-align: center;
+  margin-bottom: 10px;
+  margin: 0 5vw 0 5vw;
+}
+
+.spiral {
+  width: 60vw;
+  height: 80vh;
+}
+
+.spiral-description {
+  height: 80vh;
+  width: 40vw;
+  padding: 0 2vw 0 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.dynasty-selector {
+  width: 100%;
+}
+
+.dynasty-selector option {
+  text-align: center;
+}
+
+#spiral-chart .tooltip div{
+  color: black;
 }
