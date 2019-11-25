@@ -1,5 +1,6 @@
 function renderSpiral(data) {
 
+
   let container = d3.select(".spiral").node();
   var height = container.getBoundingClientRect().height;
   var width = container.getBoundingClientRect().width;
@@ -26,6 +27,8 @@ function renderSpiral(data) {
   var radius = d3.scaleLinear()
     .domain([start, end])
     .range([40, r]);
+
+  d3.select("#spiral-chart").selectAll("*").remove();
 
   var svg = d3.select("#spiral-chart").append("svg")
     .attr("width", width + margin.right + margin.left)
@@ -57,13 +60,15 @@ function renderSpiral(data) {
                     }))
                     .range([0, spiralLength]);
 
+  var maxDomain = 2000;
+
   // yScale for the bar height
   var yScale = d3.scaleLinear()
     // .domain([0, d3.max(data, function(d){
     //   return d["Count"];
     // })])
-    .domain([0, 2000])
-    .range([0, (r / numSpirals) - 30]);
+    .domain([0, maxDomain])
+    .range([0, (r / numSpirals) - 50]);
 
   var maxGroup = d3.max(data, function(d) {
     return parseInt(d["Group"])
@@ -95,11 +100,14 @@ function renderSpiral(data) {
       return barWidth;
     })
     .attr("height", function(d){
-      return yScale(d["Count"]);
+      let num = d["Count"];
+      if (parseInt(d["Count"]) > maxDomain) {
+        num = maxDomain;
+      }
+      return yScale(num);
     })
     .style("fill", function(d) {
-      return colors[parseInt(d["Group"])];
-      //return d3.interpolateSpectral(parseInt(d["Group"])/maxGroup);
+      return colors[parseInt(d["Group"])%colors.length];
     })
     .style("stroke", "none")
     .attr("transform", function(d){
@@ -134,7 +142,7 @@ function renderSpiral(data) {
     // place text along spiral
     .attr("xlink:href", "#spiral")
     .style("fill", function(d){
-      return colors[d["Group"]%3];
+      return colors[parseInt(d["Group"])%colors.length];
     })
     .attr("startOffset", function(d){
       return ((d.linePer / spiralLength) * 100) + "%";
@@ -172,9 +180,8 @@ function renderSpiral(data) {
   .on('mouseout', function(d) {
       d3.selectAll("rect")
       .style("fill", function(d) {
-        //return "white";
         //return d3.interpolateSpectral(parseInt(d["Group"])/maxGroup);
-        return colors[parseInt(d["Group"])%3];
+        return colors[parseInt(d["Group"])%colors.length];
       })
       .style("stroke", "none")
 

@@ -53,51 +53,51 @@ body {
   background: none;
 }
 
-.select-map{
-  border: 1px solid deeppink;
-  color: deeppink;
+#select-map{
+  border: 1px solid #FF7858;
+  color: #FF7858;
 }
 
-.select-map:hover {
+#select-map:hover {
   color: white;
-  background-color: deeppink;
+  background-color: #FF7858;
   transition: 0.5s;
 }
 
-.select-timeline{
-  border: 1px solid lightseagreen;
-  color: lightseagreen;
+#select-timeline{
+  border: 1px solid #6DB8BD;
+  color: #6DB8BD;
 }
 
-.select-timeline:hover {
+#select-timeline:hover {
   color: white;
-  background-color: lightseagreen;
+  background-color: #6DB8BD;
   transition: 0.5s;
 }
 
-.select-mode{
-  border: 1px solid coral;
-  color: coral
+#select-dynasty{
+  border: 1px solid #956DBD;
+  color: #956DBD;
 }
 
-.select-mode:hover {
+#select-dynasty:hover {
   color: white;
-  background-color: coral;
+  background-color: #956DBD;
   transition: 0.5s;
+}
+
+.section-title {
+  height: 20vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* MAP */
 .map-container{
   height: 100vh;
   width: 100vw;
-}
-
-.map-title {
-  height: 20vh;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .map-title h2 {
@@ -119,9 +119,19 @@ body {
 }
 
 /* Timeline */
+.timeline-container{
+  width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .chart-list {
+  width: 80vw;
   display: grid;
-  margin: 5vw 5vw 2vw 5vw;
+  /* margin: 5vw 5vw 2vw 5vw; */
   padding-left: 50px;
   padding-right: 30px;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -141,10 +151,6 @@ body {
   justify-content: center;
   align-items: center;
   padding-bottom: 2vh;
-}
-
-.timeline-header h1 {
-  letter-spacing: 4px;
 }
 
 .tooltip {	
@@ -167,14 +173,6 @@ body {
 }
 
 /* SPIRAL */
-.spiral-title {
-  height: 20vh;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .spiral-content{
   display: flex;
   align-items: center;
@@ -202,11 +200,11 @@ body {
   flex-direction: column;
 }
 
-.dynasty-selector {
+#dynasty-selector {
   width: 100%;
 }
 
-.dynasty-selector option {
+#dynasty-selector option {
   text-align: center;
 }
 

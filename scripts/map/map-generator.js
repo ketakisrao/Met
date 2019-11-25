@@ -36,7 +36,7 @@ function renderMap(data){
         .attr("height", height)
         .attr("border", border);
 
-    var tooltip = d3.select("#spiral-chart")
+    var tooltip = d3.select("#country-map")
         .append("div")
         .attr("class", "tooltip")
         .style("position", "absolute")
