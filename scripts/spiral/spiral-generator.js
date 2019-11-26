@@ -1,10 +1,9 @@
 function renderSpiral(data) {
 
-
-  let container = d3.select(".spiral").node();
+  var container = d3.select(".spiral").node();
   var height = container.getBoundingClientRect().height;
   var width = container.getBoundingClientRect().width;
-
+  
   var start = 0,
       end = 2.25,
       numSpirals = 2

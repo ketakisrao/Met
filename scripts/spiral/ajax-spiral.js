@@ -1,5 +1,5 @@
 $(document).on('change','#dynasty-selector',function(){
-  let VALID = ["edo", "classical", "qing"];
+  let VALID = ["edo", "classical", "qing", "late", "hellenistic"];
   if (VALID.includes($(this).val())){
     doAjaxSpiralCall($(this).val());
   } else {

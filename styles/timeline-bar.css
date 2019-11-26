@@ -1,0 +1,15 @@
+body {
+  font-family: 'Lato', sans-serif;
+  color: white;
+  background-color: black;
+}
+
+.bar-content {
+  height: 50vh;
+  border: 1px solid red;
+}
+
+.bar-graph {
+  height: 50vh;
+  border: 1px solid blue;
+}
