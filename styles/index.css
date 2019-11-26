@@ -1,13 +1,37 @@
 body {
   font-family: serif;
-  color: white;
-  background-color: black;
+  /* color: black; */
+  background-color: white;
+  /* position: relative; */
 }
 
 /* Intoduction Page */
+/* #p5-sketch-holder{
+  position: relative;
+  left: 0;
+  top: 0;
+  z-index: 1;
+} */
+/* .layer-1{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+} */
+
+/* .the-met{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+} */
 
 .met-title-container {
   height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
 }
 
 .met-title{
@@ -15,6 +39,11 @@ body {
   margin-top: 20vh;
   text-align: center;
   font-weight: bold;
+
+  position: absolute;
+  left: 20%;
+  top: 0;
+  z-index: 2;
 }
 
 .met-intro{
@@ -23,12 +52,17 @@ body {
   margin: 0 auto;
   padding: 5px;
   text-align: left;
-  color: white;
+  color: black;
   /* border: 1px solid red; */
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  z-index: 2;
 }
 
 .btns-container{
@@ -41,6 +75,11 @@ body {
   justify-content: center;
   text-align: center;
   /* border: 1px solid red; */
+
+  position: absolute;
+  left: 30%;
+  top: 70%;
+  z-index: 2;
 }
 
 .btns-container button{
@@ -54,13 +93,13 @@ body {
 }
 
 #select-map{
-  border: 1px solid #FF7858;
-  color: #FF7858;
+  border: 1px solid #956DBD;
+  color: #956DBD;
 }
 
 #select-map:hover {
   color: white;
-  background-color: #FF7858;
+  background-color: #956DBD;
   transition: 0.5s;
 }
 
@@ -76,13 +115,13 @@ body {
 }
 
 #select-dynasty{
-  border: 1px solid #956DBD;
-  color: #956DBD;
+  border: 1px solid #FF7858;
+  color: #FF7858;
 }
 
 #select-dynasty:hover {
   color: white;
-  background-color: #956DBD;
+  background-color: #FF7858;
   transition: 0.5s;
 }
 
@@ -140,7 +179,7 @@ body {
 
 .chart-content {
   margin: 0 5vw 0 5vw;
-  background-color: black;
+  background-color: white;
   display: grid;
   grid-template-rows: 1fr 2fr;
   margin: 2vh 0 2vh 0;
@@ -153,18 +192,18 @@ body {
   padding-bottom: 2vh;
 }
 
-.tooltip {	
-  position: absolute;			
-  text-align: center;			
-  width: auto;					
-  height: auto;					
-  padding: 10px;				
-  font: 12px sans-serif;		
-  background-color: rgba(255, 255, 255, 0.8);	
-  border: none;		
-  border-radius: 8px;			
-  pointer-events: none;	
-  color: black;		
+.tooltip {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  font: 12px sans-serif;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 8px;
+  pointer-events: none;
+  color: black;
   display: none;
 }
 
