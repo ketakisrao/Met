@@ -6,28 +6,9 @@ body {
 }
 
 /* Intoduction Page */
-/* #p5-sketch-holder{
-  position: relative;
-  left: 0;
-  top: 0;
-  z-index: 1;
-} */
-/* .layer-1{
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 0;
-} */
-
-/* .the-met{
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 2;
-} */
 
 .met-title-container {
-  height: 100vh;
+  /* height: 100vh; */
   position: absolute;
   left: 0;
   top: 0;
@@ -36,11 +17,12 @@ body {
 
 .met-title{
   font-family: serif;
-  margin-top: 20vh;
+  /* margin-top: 20vh; */
   text-align: center;
   font-weight: bold;
 
   position: absolute;
+  margin-top: 150px;
   left: 20%;
   top: 0;
   z-index: 2;
@@ -48,8 +30,8 @@ body {
 
 .met-intro{
   width: 40vw;
-  height: 40vh;
-  margin: 0 auto;
+  /* height: 40vh; */
+  /* margin: 0 auto; */
   padding: 5px;
   text-align: left;
   color: black;
@@ -60,87 +42,105 @@ body {
   justify-content: center;
 
   position: absolute;
+  margin-top: 250px;
   left: 30%;
-  top: 30%;
+  top: 0;
   z-index: 2;
 }
 
 .btns-container{
-  height: 15vh;
-  width: 40vw;
+  height: 6vh;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: center;
   text-align: center;
+  background-color: black;
   /* border: 1px solid red; */
 
-  position: absolute;
-  left: 30%;
-  top: 70%;
-  z-index: 2;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 3;
 }
 
 .btns-container button{
   margin: 0 2px 0 2px;
-  padding: 15px 32px;
+  padding: 2px 20px;
   width: 13vw;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   background: none;
+  z-index: 2
 }
 
 #select-map{
-  border: 1px solid #956DBD;
-  color: #956DBD;
+  /* border: 1px solid #956DBD; */
+  border:none;
+  color: white;
+  margin-right: 100px;
 }
 
 #select-map:hover {
   color: white;
-  background-color: #956DBD;
+  /* background-color: #956DBD; */
   transition: 0.5s;
+  /* text-decoration: underline; */
+  border-bottom: 2px solid;
+
 }
 
 #select-timeline{
-  border: 1px solid #6DB8BD;
-  color: #6DB8BD;
+  /* border: 1px solid #6DB8BD; */
+  border:none;
+  color: white;
 }
 
 #select-timeline:hover {
   color: white;
-  background-color: #6DB8BD;
+  /* background-color: #6DB8BD; */
   transition: 0.5s;
+  border-bottom: 2px solid;
+
 }
 
 #select-dynasty{
-  border: 1px solid #FF7858;
-  color: #FF7858;
+  /* border: 1px solid #FF7858; */
+  border:none;
+  color: white;
+  margin-right: 100px;
 }
 
 #select-dynasty:hover {
   color: white;
-  background-color: #FF7858;
+  /* background-color: #FF7858; */
   transition: 0.5s;
+  border-bottom: 2px solid;
+  z-index: 2;
 }
 
-.section-title {
+.section-title{
   height: 20vh;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 /* MAP */
 .map-container{
   height: 100vh;
   width: 100vw;
+  z-index: 2;
 }
 
 .map-title h2 {
   letter-spacing: 2px;
+  z-index: 2;
 }
 
 .map-content {
@@ -149,12 +149,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 .met-map {
   /* border: 1px solid blue; */
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
+  z-index: 2;
 }
 
 /* Timeline */
@@ -165,6 +167,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 2;
 }
 
 .chart-list {
@@ -175,6 +178,7 @@ body {
   padding-right: 30px;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   height: 50vh;
+  z-index: 2;
 }
 
 .chart-content {
@@ -183,6 +187,7 @@ body {
   display: grid;
   grid-template-rows: 1fr 2fr;
   margin: 2vh 0 2vh 0;
+  z-index: 2;
 }
 
 .timeline-header {
@@ -190,6 +195,7 @@ body {
   justify-content: center;
   align-items: center;
   padding-bottom: 2vh;
+  z-index: 2;
 }
 
 .tooltip {
@@ -205,6 +211,7 @@ body {
   pointer-events: none;
   color: black;
   display: none;
+  z-index: 2;
 }
 
 .tooltip h5, b {
@@ -222,11 +229,13 @@ body {
   text-align: center;
   margin-bottom: 10px;
   margin: 0 5vw 0 5vw;
+  z-index: 2;
 }
 
 .spiral {
   width: 60vw;
   height: 80vh;
+  z-index: 2;
 }
 
 .spiral-description {
@@ -237,16 +246,20 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  z-index: 2;
 }
 
 #dynasty-selector {
   width: 100%;
+  z-index: 2;
 }
 
 #dynasty-selector option {
   text-align: center;
+  z-index: 2;
 }
 
 #spiral-chart .tooltip div{
   color: black;
+  z-index: 2;
 }
