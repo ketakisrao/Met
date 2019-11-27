@@ -34,18 +34,19 @@
 
     <!-- Custom CSS --->
     <link rel="stylesheet" href="./styles/index.css" type="text/css">
-    <link rel="stylesheet" href="./styles/d3-timeline.css" type="text/css">
+    <link rel="stylesheet" href="./styles/timeline-bar.css" type="text/css">
 
     <!-- Scripts --->
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="./scripts/timeline/timeline-generator.js"></script>
-    <script src="./scripts/timeline/ajax-timeline.js"></script>
 
     <script src="./scripts/map/map-generator.js"></script>
     <script src="./scripts/map/ajax-map.js"></script>
 
     <script src="./scripts/spiral/spiral-generator.js"></script>
     <script src="./scripts/spiral/ajax-spiral.js"></script>
+
+    <script src="./scripts/timeline/timeline-bar-generator.js"></script>
+
 
 </head>
 
@@ -92,10 +93,10 @@
                 </div>
                 <div class="spiral-description">
                     <select id="dynasty-selector" name="dynasty-select">
-              <option value="edo" selected>Edo</option>
-              <option value="classical">Classical</option>
-              <option value="qing">Qing</option>
-          </select>
+                        <option value="edo" selected>Edo</option>
+                        <option value="classical">Classical</option>
+                        <option value="qing">Qing</option>
+                    </select>
                     <br> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
                     type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
                     passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -105,41 +106,42 @@
 
         <!-- TIMELINES --->
         <div class="timeline-container" id="timeline-top">
-            <div class="section-title">
-                <h2>Number of Artworks by Artist</h2>
+          <div class="bar-artists">
+            <div class="bar-artist-icon">
+              Degas
             </div>
-            <div class="chart-list timeline-1">
-                <div class="chart-content">
-                    <div class="timeline-header">
-                        <a target="_blank" href="timeline.html"><h3>Katsushika Hotsukai</h3></a>
-                    </div>
-                    <div id="hokusai"></div>
-                </div>
-                <div class="chart-content timeline-2">
-                    <div class="timeline-header ">
-                        <h3>Edgar Degas</h3>
-                    </div>
-                    <div id="degas"></div>
-                </div>
-                <div class="chart-content timeline-3">
-                    <div class="timeline-header">
-                        <h3>Gustav Klimt</h3>
-                    </div>
-                    <div id="klimt"></div>
-                </div>
-                <div class="chart-content timeline-4">
-                    <div class="timeline-header">
-                        <h3>Auguste Rodin</h3>
-                    </div>
-                    <div id="rodin"></div>
-                </div>
-                <div class="chart-content timeline-5">
-                    <div class="timeline-header">
-                        <h3>Georg Pencz</h3>
-                    </div>
-                    <div id="pencz"></div>
-                </div>
+            <div class="bar-artist-icon">
+              Klimt
             </div>
+            <div class="bar-artist-icon">
+              Hokusai
+            </div>
+            <div class="bar-artist-icon">
+              Rodin
+            </div>
+            <div class="bar-artist-icon">
+              Pencz
+            </div>
+          </div>
+          <div class="bar-graph">
+              <div id = "bar-svg"></div>
+            </div>
+          <div class="bar-content">
+            <div class="bar-column">
+              <div class="art-title"></div>
+              <div class="art-end-date"></div>
+              <br>
+              <div class="art-type"></div>
+              <br>
+              <div class="art-medium"></div>
+            </div>
+            <div class="bar-hovered-img">
+              <img id="bar-img" src=""></img>
+            </div>
+          </div>
+          <!-- <div class="bar-graph">
+            <div id = "bar-svg"></div>
+          </div>  -->
         </div>
         <script src="scripts/p5/sketch.js"></script>
 </body>
@@ -185,7 +187,8 @@
     $(document).ready(function() {
         doAjaxMapCall();
         doAjaxSpiralCall("edo");
-        renderTimelines();
+        
+        renderBarTimeline();
 
         scrollToSection();
     })
@@ -208,6 +211,32 @@
                 scrollTop: $("#timeline-top").offset().top
             }, 500);
         });
+    }
+
+    function renderBarTimeline() {
+      let artistName = "hokusai";
+
+      // !!! Note CORS enabled for localhost
+      let address = "https://met-server-nyc.herokuapp.com/timeline?artist=" + artistName;
+
+      var data = $.ajax({
+        url: address,
+        type: 'GET',
+        cache: false
+      });
+
+      $.when(data).then(function (dataResp) {
+          let dataInput = dataResp.results;
+          generateBarTimeline(dataInput);
+          
+        }, function (jqXHR, textStatus, errorThrown) {
+            var x1 = data;
+            if (x1.readyState != 4) {
+                x1.abort();
+            }
+            alert('GET REQUESTS FAILED');
+      });
+
     }
 </script>
 

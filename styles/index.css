@@ -162,11 +162,11 @@ body {
 /* Timeline */
 .timeline-container{
   width: 100vw;
-  height: auto;
-  display: flex;
+  height: 100vh;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   z-index: 2;
 }
 
