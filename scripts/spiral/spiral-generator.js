@@ -13,12 +13,6 @@ function renderSpiral(data) {
     return numSpirals * Math.PI * r;
   };
 
-  // used to assign nodes color by group
-  // var color = d3.scaleLinear()
-  //               .domain([1, 1000])
-  //               .range(['#d73027', '#1a9850'])
-  //               .interpolate(d3.interpolateHcl);
-
   var colors = ["#FF7858", "#6DB8BD", "#956DBD"];
 
   var r = d3.min([width, height]) / 2 - 40;

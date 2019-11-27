@@ -9,6 +9,9 @@ function generateBarTimeline(data) {
 
   var strokeWidth = 10;
 
+  // Remove old stuff if exists
+  d3.select("#bar-svg").selectAll("*").remove();
+
   // Appends the svg to the chart-container div
   var svg = d3.select("#bar-svg")
               .append("svg")

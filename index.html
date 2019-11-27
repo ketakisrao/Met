@@ -46,15 +46,15 @@
     <script src="./scripts/spiral/ajax-spiral.js"></script>
 
     <script src="./scripts/timeline/timeline-bar-generator.js"></script>
+    <script src="./scripts/timeline/ajax-timeline.js"></script>
 
-
+    <script src="scripts/p5/sketch.js"></script>
 </head>
 
 <body>
 
     <div class="met-title-container">
         <div id="p5-sketch-holder" style="position:relative; font-size:50px; z-index:1;"></div>
-
         <div id="the-met">
             <div class="met-title" id="title">
                 <h1>The Metropolitan Museum of Art Visualizations</h1>
@@ -75,7 +75,7 @@
         <!-- MAP --->
         <div class="map-container" id="map-top">
             <div class="section-title">
-                <h2>Origins of the Met Collection</h2>
+                <h2>Where is the Met Collection From?</h2>
             </div>
             <div class="map-content">
                 <div class="met-map" id="country-map">
@@ -86,7 +86,7 @@
         <!-- SPIRAL --->
         <div class="spiral-container" id="dynasty-top">
             <div class="section-title">
-                <h2>Number of Artworks by Dynasty</h2>
+                <h2>How is the Met Collection Distributed by Time Period?</h2>
             </div>
             <div class="spiral-content">
                 <div class="spiral" id="spiral-chart">
@@ -106,22 +106,25 @@
 
         <!-- TIMELINES --->
         <div class="timeline-container" id="timeline-top">
+          <div class="section-title">
+            <h2>How is the Met Collection Distributed by Artist?</h2>
+          </div>
           <div class="bar-artists">
-            <div class="bar-artist-icon">
+            <button class="bar-artist-icon" id="degas-timeline-button">
               Degas
-            </div>
-            <div class="bar-artist-icon">
+            </button>
+            <button class="bar-artist-icon" id="klimt-timeline-button">
               Klimt
-            </div>
-            <div class="bar-artist-icon">
+            </button>
+            <button class="bar-artist-icon" id="hokusai-timeline-button">
               Hokusai
-            </div>
-            <div class="bar-artist-icon">
+            </button>
+            <button class="bar-artist-icon" id="rodin-timeline-button">
               Rodin
-            </div>
-            <div class="bar-artist-icon">
+            </button>
+            <button class="bar-artist-icon" id="pencz-timeline-button">
               Pencz
-            </div>
+            </button>
           </div>
           <div class="bar-graph">
               <div id = "bar-svg"></div>
@@ -139,11 +142,8 @@
               <img id="bar-img" src=""></img>
             </div>
           </div>
-          <!-- <div class="bar-graph">
-            <div id = "bar-svg"></div>
-          </div>  -->
-        </div>
-        <script src="scripts/p5/sketch.js"></script>
+
+      </div> 
 </body>
 <script>
     // ScrollReveal().reveal('.met-title'), {
@@ -187,9 +187,7 @@
     $(document).ready(function() {
         doAjaxMapCall();
         doAjaxSpiralCall("edo");
-        
-        renderBarTimeline();
-
+        renderBarTimeline("hokusai");
         scrollToSection();
     })
 
@@ -211,32 +209,6 @@
                 scrollTop: $("#timeline-top").offset().top
             }, 500);
         });
-    }
-
-    function renderBarTimeline() {
-      let artistName = "hokusai";
-
-      // !!! Note CORS enabled for localhost
-      let address = "https://met-server-nyc.herokuapp.com/timeline?artist=" + artistName;
-
-      var data = $.ajax({
-        url: address,
-        type: 'GET',
-        cache: false
-      });
-
-      $.when(data).then(function (dataResp) {
-          let dataInput = dataResp.results;
-          generateBarTimeline(dataInput);
-          
-        }, function (jqXHR, textStatus, errorThrown) {
-            var x1 = data;
-            if (x1.readyState != 4) {
-                x1.abort();
-            }
-            alert('GET REQUESTS FAILED');
-      });
-
     }
 </script>
 

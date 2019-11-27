@@ -1,19 +1,27 @@
-const artists = ["hokusai", "degas", "klimt", "rodin", "pencz"];
-const colors = {"hokusai": "#586BA4", "degas": "#324376", "klimt": "#F5DD90", "rodin": "#F68E5F", "pencz": "#F76C5E"};
+$(document).on('click','#degas-timeline-button',function(){
+    renderBarTimeline("degas");
+});
 
-function renderTimelines() {
-  
-  for (let name of artists) {
-    doAjaxArtistCall(name, colors[name], false);
-  }
-  
-}
+$(document).on('click','#klimt-timeline-button',function(){
+  renderBarTimeline("klimt");
+});
 
-function doAjaxArtistCall(artistName, color, renderTooltip) {
+$(document).on('click','#hokusai-timeline-button',function(){
+  renderBarTimeline("hokusai");
+});
+
+$(document).on('click','#rodin-timeline-button',function(){
+  renderBarTimeline("rodin");
+});
+
+$(document).on('click','#pencz-timeline-button',function(){
+  renderBarTimeline("pencz");
+});
+
+function renderBarTimeline(id) {
 
   // !!! Note CORS enabled for localhost
-  let address = "https://met-server-nyc.herokuapp.com/timeline?artist=" + artistName;
-  let datesAddress = "https://met-server-nyc.herokuapp.com/timeline-dates?artist=" + artistName;
+  let address = "https://met-server-nyc.herokuapp.com/timeline?artist=" + id;
 
   var data = $.ajax({
     url: address,
@@ -21,26 +29,16 @@ function doAjaxArtistCall(artistName, color, renderTooltip) {
     cache: false
   });
 
-  var datesData = $.ajax({
-    url: datesAddress,
-    type: 'GET',
-    cache: false
-  });
-
-  $.when(data, datesData).then(function (dataResp, datesResp) {
-      let dataInput = dataResp[0].results;
-      let datesInput = datesResp[0]["Date Count"];
-      generateTimeline(artistName, dataInput, datesInput, color, renderTooltip);
+  $.when(data).then(function (dataResp) {
+      let dataInput = dataResp.results;
+      generateBarTimeline(dataInput);
       
     }, function (jqXHR, textStatus, errorThrown) {
         var x1 = data;
-        var x2 = datesData;
         if (x1.readyState != 4) {
             x1.abort();
         }
-        if (x2.readyState != 4) {
-            x2.abort();
-        }
         alert('GET REQUESTS FAILED');
   });
+
 }

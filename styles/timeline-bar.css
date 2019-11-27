@@ -1,8 +1,4 @@
-/* body {
-  font-family: 'Lato', sans-serif;
-  color: white;
-  background-color: black;
-} */
+
 
 .bar-artists {
   height: 20vh;
@@ -20,15 +16,16 @@
   height: 100%;
   margin: 1vh;
   border-radius: 5px;
+  margin-bottom: 5vh;
 }
 
 .bar-content {
-  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   padding: 5px;
+  margin-bottom: 20vh;
 }
 
 .bar-graph {
@@ -37,7 +34,7 @@
 
 .bar-column {
   width: 40vw;
-  height: 100%;
+  height: 40vh;
   display: none;
   padding: 2vh 2vh 2vh 4vh;
 }
@@ -51,7 +48,7 @@
 
 .bar-hovered-img {
   width: 40vw;
-  height: 100%;
+  height: 40vh;
   display: flex;
   align-items: center;
   justify-content: center;
