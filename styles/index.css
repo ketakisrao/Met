@@ -270,3 +270,10 @@ body {
   color: black;
   z-index: 2;
 }
+
+
+/* CLASSIFICATION */
+
+.classification {
+    height: 600px;
+}

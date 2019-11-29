@@ -29,12 +29,21 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
     <!-- Bootstrap --->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
     <!-- Custom CSS --->
     <link rel="stylesheet" href="./styles/index.css" type="text/css">
     <link rel="stylesheet" href="./styles/timeline-bar.css" type="text/css">
+
+    <!-- Amcharts-->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
     <!-- Scripts --->
     <script src="https://unpkg.com/scrollreveal"></script>
@@ -44,6 +53,9 @@
 
     <script src="./scripts/spiral/spiral-generator.js"></script>
     <script src="./scripts/spiral/ajax-spiral.js"></script>
+    <script src="./scripts/classification/classification-generator.js"></script>
+    <script src="./scripts/classification/ajax-classification.js"></script>
+
 
     <script src="./scripts/timeline/timeline-bar-generator.js"></script>
     <script src="./scripts/timeline/ajax-timeline.js"></script>
@@ -60,10 +72,15 @@
                 <h1>The Metropolitan Museum of Art Visualizations</h1>
             </div>
             <div class="met-intro">
-                <p class="met-intro-target">Located in the heart of New York City, the Metropolitan Museum of Art is the largest museum in the United States. The permanent collection consists of artwork created from Ancient Egypt, Ancient Asia, Medieval Europe, to contemporary American
+                <p class="met-intro-target">Located in the heart of New York City, the Metropolitan Museum of Art is the
+                    largest museum in the United States. The permanent collection consists of artwork created from
+                    Ancient Egypt, Ancient Asia, Medieval Europe, to contemporary American
                     art, attracting tourists from all over the world. </p>
-                <p class="met-intro-target">The Met Visualizations is a data visualization project that curates the art works digitally, demonstrates the Met collection in digestible ways and provides interactive art viewing experience for the audience. </p>
-                <p class="met-intro-target">Data source from<a target="_blank" href="https://github.com/metmuseum/openaccess"> the Met Open Access. </a></p>
+                <p class="met-intro-target">The Met Visualizations is a data visualization project that curates the art
+                    works digitally, demonstrates the Met collection in digestible ways and provides interactive art
+                    viewing experience for the audience. </p>
+                <p class="met-intro-target">Data source from<a target="_blank"
+                        href="https://github.com/metmuseum/openaccess"> the Met Open Access. </a></p>
             </div>
 
             <div class="btns-container">
@@ -84,7 +101,7 @@
         </div>
 
         <!-- SPIRAL --->
-        <div class="spiral-container" id="dynasty-top">
+        <!-- <div class="spiral-container" id="dynasty-top">
             <div class="section-title">
                 <h2>How is the Met Collection Distributed by Time Period?</h2>
             </div>
@@ -103,48 +120,72 @@
                     passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 </div>
             </div>
+        </div> -->
+
+        <!-- Classification-->
+        <div class="classification-container" id="classification-top">
+            <div class="section-title">
+                <h2>How is the Met Collection Distributed by Time Period?</h2>
+            </div>
+            <div class="classification-content">
+                <div class="classification" id="classification-chart">
+                </div>
+                <div class="classification-description">
+                    <select id="collection-selector" name="collection-select">
+                        <option value="1" selected>China</option>
+                        <option value="2">Europe</option>
+                        <option value="3">Greek</option>
+                        <option value="4">Islam</option>
+                        <option value="5">Japan</option>
+                        <option value="6">Oceania</option>
+                    </select>
+                    <br> Dummy Description
+                </div>
+            </div>
         </div>
+
+
 
         <!-- TIMELINES --->
         <div class="timeline-container" id="timeline-top">
-          <div class="section-title">
-            <h2>How is the Met Collection Distributed by Artist?</h2>
-          </div>
-          <div class="bar-artists">
-            <button class="bar-artist-icon" id="degas-timeline-button">
-              Degas
-            </button>
-            <button class="bar-artist-icon" id="klimt-timeline-button">
-              Klimt
-            </button>
-            <button class="bar-artist-icon" id="hokusai-timeline-button">
-              Hokusai
-            </button>
-            <button class="bar-artist-icon" id="rodin-timeline-button">
-              Rodin
-            </button>
-            <button class="bar-artist-icon" id="pencz-timeline-button">
-              Pencz
-            </button>
-          </div>
-          <div class="bar-graph">
-              <div id = "bar-svg"></div>
+            <div class="section-title">
+                <h2>How is the Met Collection Distributed by Artist?</h2>
             </div>
-          <div class="bar-content">
-            <div class="bar-column">
-              <div class="art-title"></div>
-              <div class="art-end-date"></div>
-              <br>
-              <div class="art-type"></div>
-              <br>
-              <div class="art-medium"></div>
+            <div class="bar-artists">
+                <button class="bar-artist-icon" id="degas-timeline-button">
+                    Degas
+                </button>
+                <button class="bar-artist-icon" id="klimt-timeline-button">
+                    Klimt
+                </button>
+                <button class="bar-artist-icon" id="hokusai-timeline-button">
+                    Hokusai
+                </button>
+                <button class="bar-artist-icon" id="rodin-timeline-button">
+                    Rodin
+                </button>
+                <button class="bar-artist-icon" id="pencz-timeline-button">
+                    Pencz
+                </button>
             </div>
-            <div class="bar-hovered-img">
-              <img id="bar-img" src=""></img>
+            <div class="bar-graph">
+                <div id="bar-svg"></div>
             </div>
-          </div>
+            <div class="bar-content">
+                <div class="bar-column">
+                    <div class="art-title"></div>
+                    <div class="art-end-date"></div>
+                    <br>
+                    <div class="art-type"></div>
+                    <br>
+                    <div class="art-medium"></div>
+                </div>
+                <div class="bar-hovered-img">
+                    <img id="bar-img" src=""></img>
+                </div>
+            </div>
 
-      </div> 
+        </div>
 </body>
 <script>
     // ScrollReveal().reveal('.met-title'), {
@@ -185,27 +226,28 @@
     //     reset: true
     // });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         doAjaxMapCall();
         doAjaxSpiralCall("0-500");
+        doAjaxClassification(1);
         renderBarTimeline("hokusai");
         scrollToSection();
     })
 
     function scrollToSection() {
-        $("#select-map").click(function() {
+        $("#select-map").click(function () {
             $('html, body').animate({
                 scrollTop: $("#map-top").offset().top
             }, 500);
         });
 
-        $("#select-dynasty").click(function() {
+        $("#select-dynasty").click(function () {
             $('html, body').animate({
                 scrollTop: $("#dynasty-top").offset().top
             }, 500);
         });
 
-        $("#select-timeline").click(function() {
+        $("#select-timeline").click(function () {
             $('html, body').animate({
                 scrollTop: $("#timeline-top").offset().top
             }, 500);
