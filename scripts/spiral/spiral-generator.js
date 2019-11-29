@@ -1,11 +1,11 @@
-function renderSpiral(data) {
+function renderSpiral(dynasty, data) {
 
   var container = d3.select(".spiral").node();
   var height = container.getBoundingClientRect().height;
   var width = container.getBoundingClientRect().width;
   
   var start = 0,
-      end = 2.25,
+      end = 2.5,
       numSpirals = 2
       margin = {top:50,bottom:50,left:50,right:50};
 
@@ -41,10 +41,10 @@ function renderSpiral(data) {
     .attr("id", "spiral")
     .attr("d", spiral)
     .style("fill", "none")
-    // .style("stroke", "steelblue");
+    .style("stroke", "grey");
 
   var spiralLength = path.node().getTotalLength(),
-      N = data.length,
+      N = 500,
       barWidth = (spiralLength / N) - 1;
 
   var timeScale = d3.scaleLinear()
@@ -53,7 +53,11 @@ function renderSpiral(data) {
                     }))
                     .range([0, spiralLength]);
 
-  var maxDomain = 2000;
+  var maxDomain = 200;
+  
+  if (dynasty === ("1500-2000")) {
+    maxDomain = 2000;
+  }
 
   // yScale for the bar height
   var yScale = d3.scaleLinear()
@@ -153,22 +157,23 @@ function renderSpiral(data) {
 
   svg.selectAll("rect")
   .on('mouseover', function(d) {
+      tooltip.select('.date').html("<b>Date: " + d["Date"] + "</b>");
+      tooltip.select('.value').html("<b># Artworks:" + d["Count"] + "</b>");
 
-      tooltip.select('.date').html("Date: <b>" + d["Date"] + "</b>");
-      tooltip.select('.value').html("# Artworks: <b>" + d["Count"] + "<b>");
+      tooltip.style('display', 'block')
+              .style("left", (d3.event.pageX + 10) + "px")		
+              .style("top", (d3.event.pageY - 28) + "px")
+              .style('opacity', 1);
 
       d3.select(this)
-      .style("fill","#FFFFFF")
-      .style("stroke","#000000")
-      .style("stroke-width","2px");
-
-      tooltip.style('display', 'block');
-      tooltip.style('opacity',2);
+              .style("fill","#FFFFFF")
+              .style("stroke","#000000")
+              .style("stroke-width","2px");
 
   })
   .on('mousemove', function(d) {
-      tooltip.style('top', (d3.event.layerY + 10) + 'px')
-      .style('left', (d3.event.layerX - 25) + 'px');
+      tooltip.style('top', (d3.event.pageY + 10) + 'px')
+              .style('left', (d3.event.pageX - 25) + 'px');
   })
   .on('mouseout', function(d) {
       d3.selectAll("rect")
@@ -178,8 +183,8 @@ function renderSpiral(data) {
       })
       .style("stroke", "none")
 
-      tooltip.style('display', 'none');
-      tooltip.style('opacity',0);
+      tooltip.style('display', 'block');
+      tooltip.style('opacity', 0);
   });
 
 }

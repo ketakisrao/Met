@@ -1,16 +1,12 @@
 $(document).on('change','#dynasty-selector',function(){
-  let VALID = ["edo", "classical", "qing", "late", "hellenistic"];
-  if (VALID.includes($(this).val())){
-    doAjaxSpiralCall($(this).val());
-  } else {
-    throw new Error ("Non valid dynasty name.");
-  }
+  doAjaxSpiralCall($(this).val());
 });
 
 function doAjaxSpiralCall(dynasty) {
 
   // !!! Note CORS enabled for localhost
   let address = "https://met-server-nyc.herokuapp.com/counts-by-date?dynasty=" + dynasty;
+  //let address = "http://127.0.0.1:5000/counts-by-date?dynasty=" + dynasty;
 
   var data = $.ajax({
     url: address,
@@ -20,7 +16,7 @@ function doAjaxSpiralCall(dynasty) {
 
   $.when(data).then(function (dataResp) {
       let dataInput = dataResp.result;
-      renderSpiral(dataInput);
+      renderSpiral(dynasty, dataInput);
       
     }, function (jqXHR, textStatus, errorThrown) {
         var x1 = data;
