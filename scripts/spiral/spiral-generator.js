@@ -13,12 +13,17 @@ function renderSpiral(dynasty, data) {
     return numSpirals * Math.PI * r;
   };
 
-  var colors = ["#FF7858", "#6DB8BD", "#956DBD"];
-  // var color = d3.scaleLinear()
-  //               .domain([0, 1000])
-  //               .interpolate(d3.interpolateHcl)
-  //               .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
-
+  //var colors = ["#FF7858", "#6DB8BD", "#956DBD"];
+  if (dynasty === "bc") {
+    var colors = d3.scaleLinear()
+                  .interpolate(d3.interpolateHcl)
+                  .range([d3.rgb("#000000"), d3.rgb('#000000')]);
+  } else {
+    var colors = d3.scaleLinear()
+                  .domain([0, 500])
+                  .interpolate(d3.interpolateHcl)
+                  .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
+  }
 
   var r = d3.min([width, height]) / 2 - 40;
 
@@ -63,6 +68,8 @@ function renderSpiral(dynasty, data) {
 
   if (dynasty === ("1500-2000")) {
     maxDomain = 2000;
+  } else if (dynasty === ("bc")) {
+    maxDomain = 200;
   }
 
   // yScale for the bar height
@@ -110,7 +117,7 @@ function renderSpiral(dynasty, data) {
       return yScale(num);
     })
     .style("fill", function(d) {
-      return colors[parseInt(d["Group"])%colors.length];
+      return colors(parseInt(d["Date"]));
     })
     .style("stroke", "none")
     .attr("transform", function(d){
@@ -147,7 +154,7 @@ function renderSpiral(dynasty, data) {
     // place text along spiral
     .attr("xlink:href", "#spiral")
     .style("fill", function(d){
-      return colors[parseInt(d["Group"])%colors.length];
+      return colors(parseInt(d["Date"]));
     })
     .attr("startOffset", function(d){
       return ((d.linePer / spiralLength) * 100) + "%";
@@ -164,35 +171,39 @@ function renderSpiral(dynasty, data) {
         .attr('class', 'value');
 
   svg.selectAll("rect")
-  .on('mouseover', function(d) {
-      tooltip.select('.date').html("<b>Date: " + d["Date"] + "</b>");
-      tooltip.select('.value').html("<b># Artworks:" + d["Count"] + "</b>");
+      .on('mouseover', function(d) {
+          tooltip.select('.date').html("<b>Date: " + d["Date"] + "</b>");
+          tooltip.select('.value').html("<b># Artworks:" + d["Count"] + "</b>");
 
-      tooltip.style('display', 'block')
-              .style("left", (d3.event.pageX + 10) + "px")
-              .style("top", (d3.event.pageY - 28) + "px")
-              .style('opacity', 1);
+          tooltip.style('display', 'block')
+                  .style("left", (d3.event.pageX + 10) + "px")		
+                  .style("top", (d3.event.pageY - 28) + "px")
+                  .style('opacity', 1);
 
-      d3.select(this)
-              .style("fill","#FFFFFF")
-              .style("stroke","#000000")
-              .style("stroke-width","2px");
+          d3.select(this)
+                  .style("fill","#FFFFFF")
+                  .style("stroke","#000000")
+                  .style("stroke-width","2px");
 
-  })
-  .on('mousemove', function(d) {
-      tooltip.style('top', (d3.event.pageY + 10) + 'px')
-              .style('left', (d3.event.pageX - 25) + 'px');
-  })
-  .on('mouseout', function(d) {
-      d3.selectAll("rect")
-      .style("fill", function(d) {
-        //return d3.interpolateSpectral(parseInt(d["Group"])/maxGroup);
-        return colors[parseInt(d["Group"])%colors.length];
       })
-      .style("stroke", "none")
+      .on('mousemove', function(d) {
+          tooltip.style('top', (d3.event.pageY + 10) + 'px')
+                  .style('left', (d3.event.pageX - 25) + 'px');
+      })
+      .on('mouseout', function(d) {
+          d3.selectAll("rect")
+          .style("fill", function(d) {
+            //return d3.interpolateSpectral(parseInt(d["Group"])/maxGroup);
+            if (d) {
+              return colors(parseInt(d["Date"]));
+            }
+            return "none";
+          })
+          .style("stroke", "none")
 
-      tooltip.style('display', 'block');
-      tooltip.style('opacity', 0);
-  });
+          // tooltip.style('display', 'block');
+          tooltip.style('opacity', 0);
+      });
+      
 
 }
