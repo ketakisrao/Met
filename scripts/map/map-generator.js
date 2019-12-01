@@ -16,7 +16,6 @@ function renderMap(data){
                   .interpolate(d3.interpolateHcl)
                   .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
 
-
     const zoom = d3.zoom()
         .scaleExtent([1, 3])
         .translateExtent([

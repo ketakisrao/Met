@@ -8,8 +8,7 @@ var maxParticles, particleBreakDistance, repelDist;
 var particles = [];
 
 function setup() {
-    translate(0,200);
-    var canvas = createCanvas($('#p5-sketch-holder').width(), 600);
+    var canvas = createCanvas($('#p5-sketch-holder').width(), 800);
     canvas.parent('p5-sketch-holder');
 
     console.log("Canvas Size :" + width + "x" + height);
@@ -92,13 +91,14 @@ function drawParticles() {
 }
 
 function draw() {
-  translate(0,70);
-
+    // translate(0,70);
 
     background(255);
 
     drawParticles();
     particleBreakDistance = min(particleBreakDistance + 1, width / 12);
+    fill(255);
+    rect(300,200,650,350);
 
 
 }

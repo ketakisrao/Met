@@ -18,11 +18,11 @@ function renderSpiral(dynasty, data) {
     var colors = d3.scaleLinear()
                   .interpolate(d3.interpolateHcl)
                   .range([d3.rgb("#000000"), d3.rgb('#000000')]);
-  } else {
+  }else{
     var colors = d3.scaleLinear()
-                  .domain([0, 500])
+                  .domain([0, 2000])
                   .interpolate(d3.interpolateHcl)
-                  .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
+                  .range([d3.rgb("#d7f5fb"), d3.rgb('#051c95')]);
   }
 
   var r = d3.min([width, height]) / 2 - 40;
@@ -40,6 +40,7 @@ function renderSpiral(dynasty, data) {
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
   var points = d3.range(start, end + 0.001, (end - start) / 1000);
+  // var points = d3.range(end, start + 0.001, (start-end) / 1000);
 
   var spiral = d3.radialLine()
     .curve(d3.curveCardinal)
@@ -52,7 +53,7 @@ function renderSpiral(dynasty, data) {
     .attr("id", "spiral")
     .attr("d", spiral)
     .style("fill", "none")
-    .style("stroke", "grey");
+    .style("stroke", "#d3dafc");
 
   var spiralLength = path.node().getTotalLength(),
       N = 500,
@@ -150,7 +151,7 @@ function renderSpiral(dynasty, data) {
       return d["Date"]
     })
 
-    
+
     // place text along spiral
     .attr("xlink:href", "#spiral")
     .style("fill", function(d){
@@ -172,17 +173,17 @@ function renderSpiral(dynasty, data) {
 
   svg.selectAll("rect")
       .on('mouseover', function(d) {
-          tooltip.select('.date').html("<b>Date: " + d["Date"] + "</b>");
+          tooltip.select('.date').html("<b>Year: " + d["Date"] + "</b>");
           tooltip.select('.value').html("<b># Artworks:" + d["Count"] + "</b>");
 
           tooltip.style('display', 'block')
-                  .style("left", (d3.event.pageX + 10) + "px")		
+                  .style("left", (d3.event.pageX + 10) + "px")
                   .style("top", (d3.event.pageY - 28) + "px")
                   .style('opacity', 1);
 
           d3.select(this)
                   .style("fill","#FFFFFF")
-                  .style("stroke","#000000")
+                  .style("stroke","#01136f")
                   .style("stroke-width","2px");
 
       })
@@ -204,6 +205,6 @@ function renderSpiral(dynasty, data) {
           // tooltip.style('display', 'block');
           tooltip.style('opacity', 0);
       });
-      
+
 
 }
