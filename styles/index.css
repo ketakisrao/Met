@@ -43,7 +43,7 @@ body {
   color: black;
   /* border: 1px solid red; */
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
   justify-content: center;
 
