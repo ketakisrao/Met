@@ -21,7 +21,7 @@ function generateBarTimeline(data) {
 
   // Creates the xScale
   var xScale = d3.scaleTime()
-    .range([0, width]);
+    .range([0, width-100]);
 
   // Creates the yScale
   var yScale = d3.scaleLinear()
@@ -57,19 +57,19 @@ function generateBarTimeline(data) {
     var xAxisGroup = svg.append("g")
                         .attr("class", "x axis")
                         .attr("transform", function() {
-                          return "translate(0," + height*0.3 + ")";
+                          return "translate(80," + height*0.4 + ")";
                         })
                         .call(xAxis);
 
     var yearCounter = {};
-    var imgSize = 5;                   
+    var imgSize = 5;
     var images = svg.selectAll("images")
                     .data(data)
                     .enter()
                     .append('g')
                     .attr("transform", function(d) {
                       let x = xScale(d["Object End Date"]);
-                      
+
                       let date = d["Object End Date"];
                       if (date in yearCounter) {
                         yearCounter[date] = yearCounter[date] + 1;
@@ -81,7 +81,7 @@ function generateBarTimeline(data) {
 
                       let y = height*0.3 + (imgSize * multiple) + 10;
 
-                      return `translate(${x-10},${y})`;
+                      return `translate(${x+78},${y})`;
                     })
                     .append('svg')
                     .attr("width", imgSize)
@@ -94,7 +94,7 @@ function generateBarTimeline(data) {
                     .attr("y", 0)
                     .attr("width", "100%")
                     .attr("height", "100%")
-                  
+
     images.on("mouseover", function(d) {
             let artTitle = d["Title"] ? d["Title"] : "Untitled";
             let maxChar = 40;
@@ -113,13 +113,13 @@ function generateBarTimeline(data) {
 
             d3.select(".art-end-date")
               .html("DATE: " + d["Object End Date"])
-            
+
             d3.select("#bar-img")
               .attr("src", d["Image URL"])
 
             d3.select(".bar-column")
               .style("display", "block");
-            
+
             d3.select("#bar-img")
               .style("display", "block");
 
@@ -130,6 +130,6 @@ function generateBarTimeline(data) {
 
             d3.select("#bar-img")
               .style("display", "none");
-          })   
+          })
   }
 }

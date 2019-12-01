@@ -35,7 +35,7 @@ function renderClassification(data) {
         // subtitle.text = "(click to open)";
 
         var title = chart.titles.create();
-        title.text = "Most Art Medium in " + $('#collection-selector option:selected').text();
+        // title.text = "Most Art Medium in " + $('#collection-selector option:selected').text();
         title.fontSize = 20;
         title.fontWeight = "800";
 

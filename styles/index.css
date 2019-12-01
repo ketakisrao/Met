@@ -1,5 +1,5 @@
 body {
-  font-family: serif;
+  font-family: Montserrat,serif;
   /* color: black; */
   background-color: white;
   /* position: relative; */
@@ -27,7 +27,7 @@ body {
   text-align: center;
   font-weight: bold;
   position: absolute;
-  margin-top: 150px;
+  margin-top: 100px;
   top: 0;
   z-index: 2;
 }
@@ -46,92 +46,147 @@ body {
   justify-content: center;
 
   position: absolute;
-  margin-top: 250px;
+  margin-top: 180px;
   left: 30%;
   top: 0;
   z-index: 2;
 }
 
 .btns-container{
-  height: 6vh;
-  width: 100%;
+  height: 100%;
+  /* width: 20%; */
   margin: 0 auto;
   display: flex;
   align-items: center;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content:space-between;
   text-align: center;
-  background-color: black;
+  margin-left: 50px;
+  /* background-color: white; */
   /* border: 1px solid red; */
 
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 3;
+  z-index: 2;
 }
 
 .btns-container button{
   margin: 0 2px 0 2px;
-  padding: 2px 20px;
-  width: 13vw;
+  padding: 2px 10px;
+  /* width: 13vw; */
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  background: none;
+  border-radius: 50%;
+  background: white;
   z-index: 2
 }
 
-#select-map{
-  /* border: 1px solid #956DBD; */
-  border:none;
+/* 0 */
+#select-home{
+  margin-top: 250px;
+  border:1px solid black;
+  color: black;
+}
+
+#select-home:hover {
   color: white;
-  margin-right: 100px;
+  background-color: black;
+  transition: 0.5s;
+
+}
+
+/* 1 */
+#select-map{
+  border: 1px solid black;
+  color: black;
+  /* margin-left: 50px; */
 }
 
 #select-map:hover {
   color: white;
-  /* background-color: #956DBD; */
+  background-color: black;
   transition: 0.5s;
   /* text-decoration: underline; */
-  border-bottom: 2px solid;
+  /* border-bottom: 2px solid; */
 
 }
 
-#select-timeline{
-  /* border: 1px solid #6DB8BD; */
-  border:none;
-  color: white;
-}
-
-#select-timeline:hover {
-  color: white;
-  /* background-color: #6DB8BD; */
-  transition: 0.5s;
-  border-bottom: 2px solid;
-
-}
-
+/* 2 */
 #select-dynasty{
-  /* border: 1px solid #FF7858; */
-  border:none;
-  color: white;
-  margin-right: 100px;
+  border:1px solid black;
+  color: black;
+  /* margin-right: 100px; */
 }
 
 #select-dynasty:hover {
   color: white;
-  /* background-color: #FF7858; */
+  background-color: black;
   transition: 0.5s;
-  border-bottom: 2px solid;
+  /* border-bottom: 2px solid; */
   z-index: 2;
 }
 
+/* 3 */
+#select-medium{
+  border:1px solid black;
+  color: black;
+  /* margin-right: 100px; */
+}
+
+#select-medium:hover {
+  color: white;
+  background-color: black;
+  transition: 0.5s;
+  /* border-bottom: 2px solid; */
+  z-index: 2;
+}
+
+/* 4 */
+#select-timeline{
+  margin-bottom: 100px;
+  border:1px solid black;
+  color: black;
+}
+
+#select-timeline:hover {
+  color: white;
+  background-color: black;
+  transition: 0.5s;
+  /* border-bottom: 2px solid; */
+
+}
+
+
+
+
 .section-title{
-  height: 20vh;
+  /* height: 20vh; */
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
+  z-index: 2;
+}
+
+.section-subtitle{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  z-index: 2;
+}
+
+.section-description{
+  width:50vw;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
   z-index: 2;
 }
 
@@ -146,10 +201,10 @@ body {
   flex-direction: column;
 }
 
-.map-title h2 {
+/* .map-title h2 {
   letter-spacing: 2px;
   z-index: 2;
-}
+} */
 
 .map-content {
   text-align: center;
@@ -167,6 +222,17 @@ body {
   z-index: 2;
 }
 
+/* Time Spiral */
+.spiral-container{
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+
+.spiral-container h3{
+  margin-top: 20px;
+}
+
 /* Timeline */
 .timeline-container{
   width: 100vw;
@@ -176,6 +242,10 @@ body {
   align-items: center;
   flex-direction: column; */
   z-index: 2;
+}
+
+.timeline-container h3{
+  margin-top: 20px;
 }
 
 .chart-list {
@@ -273,7 +343,27 @@ body {
 
 
 /* CLASSIFICATION */
+.classification-container{
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+
+.classification-container h3{
+  margin-top: 20px
+}
+
+.classification-description{
+  margin-left: 40%;
+  display:flex;
+  z-index: 2;
+}
+
+.classification-description h4{
+  text-align: center;
+}
 
 .classification {
-    height: 600px;
+    height: 550px;
+    z-index: 2;
 }

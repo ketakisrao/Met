@@ -14,9 +14,9 @@ function renderMap(data){
     var color = d3.scaleLinear()
                   .domain([0, 1000])
                   .interpolate(d3.interpolateHcl)
-                  .range([d3.rgb("#C99C92"), d3.rgb('#FF5733')]);
+                  .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
 
-                        
+
     const zoom = d3.zoom()
         .scaleExtent([1, 3])
         .translateExtent([
@@ -82,7 +82,7 @@ function renderMap(data){
               }
               return color(count);
             } else {
-              return "black";
+              return "#ededee";
             }
           })
           .on('mouseover', function(d, i) {
@@ -91,19 +91,19 @@ function renderMap(data){
             if (idx !== -1) {
               var currentState = this;
               d3.select(this)
-                .style('fill', "red");
+                .style('fill', "#1005c5");
 
-              tooltip.transition()		
-                .duration(200)		
-                .style("opacity", 1);	
+              tooltip.transition()
+                .duration(200)
+                .style("opacity", 1);
 
               let string = `<h5>${countryName}</h5>
                             <b>${data[idx]["n"]} Artworks</b>`;
 
-              tooltip.html(string)	
-                      .style("left", (d3.event.pageX + 10) + "px")		
+              tooltip.html(string)
+                      .style("left", (d3.event.pageX + 10) + "px")
                       .style("top", (d3.event.pageY - 28) + "px")
-                      .style("display", "block");	
+                      .style("display", "block");
             }
           })
           .on("mousemove", function(){
@@ -121,8 +121,8 @@ function renderMap(data){
               d3.select(this).style('fill', color(count));
             }
 
-            tooltip.html("HELLO")	
-                    .style("display", "none");	
+            tooltip.html("HELLO")
+                    .style("display", "none");
           });
   }
 

@@ -1,12 +1,13 @@
 
 
 .bar-artists {
-  height: 20vh;
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   padding: 1vh;
+  margin-top: 20px;
   margin-bottom: 3vh;
 }
 

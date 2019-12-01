@@ -3,7 +3,7 @@ function renderSpiral(dynasty, data) {
   var container = d3.select(".spiral").node();
   var height = container.getBoundingClientRect().height;
   var width = container.getBoundingClientRect().width;
-  
+
   var start = 0,
       end = 2.5,
       numSpirals = 2
@@ -14,6 +14,11 @@ function renderSpiral(dynasty, data) {
   };
 
   var colors = ["#FF7858", "#6DB8BD", "#956DBD"];
+  // var color = d3.scaleLinear()
+  //               .domain([0, 1000])
+  //               .interpolate(d3.interpolateHcl)
+  //               .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
+
 
   var r = d3.min([width, height]) / 2 - 40;
 
@@ -36,6 +41,7 @@ function renderSpiral(dynasty, data) {
     .angle(theta)
     .radius(radius);
 
+  //axis
   var path = svg.append("path")
     .datum(points)
     .attr("id", "spiral")
@@ -54,7 +60,7 @@ function renderSpiral(dynasty, data) {
                     .range([0, spiralLength]);
 
   var maxDomain = 200;
-  
+
   if (dynasty === ("1500-2000")) {
     maxDomain = 2000;
   }
@@ -81,11 +87,11 @@ function renderSpiral(dynasty, data) {
 
       var posOnLine = path.node().getPointAtLength(linePer);
       var angleOnLine = path.node().getPointAtLength(linePer - barWidth);
-    
+
       d.linePer = linePer; // % distance are on the spiral
       d.x = posOnLine.x; // x postion on the spiral
       d.y = posOnLine.y; // y position on the spiral
-      
+
       d.a = (Math.atan2(angleOnLine.y, angleOnLine.x) * 180 / Math.PI) - 90; //angle at the spiral position
 
       return d.x;
@@ -116,7 +122,7 @@ function renderSpiral(dynasty, data) {
       return i * 10
     })
     .attr("opacity", 1)
-    
+
 
   svg.selectAll("text")
     .data(data)
@@ -136,6 +142,8 @@ function renderSpiral(dynasty, data) {
     .text(function(d){
       return d["Date"]
     })
+
+    
     // place text along spiral
     .attr("xlink:href", "#spiral")
     .style("fill", function(d){
@@ -161,7 +169,7 @@ function renderSpiral(dynasty, data) {
       tooltip.select('.value').html("<b># Artworks:" + d["Count"] + "</b>");
 
       tooltip.style('display', 'block')
-              .style("left", (d3.event.pageX + 10) + "px")		
+              .style("left", (d3.event.pageX + 10) + "px")
               .style("top", (d3.event.pageY - 28) + "px")
               .style('opacity', 1);
 

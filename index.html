@@ -65,7 +65,7 @@
 
 <body>
 
-    <div class="met-title-container">
+    <div class="met-title-container"  id = "home-top">
         <div id="p5-sketch-holder" style="position:relative; font-size:50px; z-index:1;"></div>
         <div id="the-met">
             <div class="met-title" id="title">
@@ -79,20 +79,30 @@
                 <p class="met-intro-target">The Met Visualizations is a data visualization project that curates the art
                     works digitally, demonstrates the Met collection in digestible ways and provides interactive art
                     viewing experience for the audience. </p>
+                    <p class="met-intro-target">The website is divided into four sections and will tour the audience first by the origins of the artworks(1), then by time period(2), followed by a word cloud of artwork made from different materials(3), and then finally an artwork showcase of a few Met artists(4)  </p>
                 <p class="met-intro-target">Data source from<a target="_blank"
                         href="https://github.com/metmuseum/openaccess"> the Met Open Access. </a></p>
             </div>
 
             <div class="btns-container">
-                <button type="button" name="button" id="select-map">Origins</button>
-                <button type="button" name="button" id="select-dynasty">Dynasties</button>
-                <button type="button" name="button" id="select-timeline">Artists</button>
-            </div>
+              <button type="button" name="button" id="select-home">0</button>
+              <button type="button" name="button" id="select-map">1</button>
+              <button type="button" name="button" id="select-dynasty">2</button>
+              <button type="button" name="button" id="select-medium">3</button>
+                <button type="button" name="button" id="select-timeline">4</button>
+                </div>
         </div>
         <!-- MAP --->
         <div class="map-container" id="map-top">
             <div class="section-title">
-                <h2>Where is the Met Collection From?</h2>
+                <h3>World Map: the origins of the Met collection</h3>
+            </div>
+            <!-- <div class="section-subtitle">
+                <h4>The origins of the Met collection</h4>
+            </div> -->
+            <div class="section-description">
+              <p>Based on our data, the top ten origins of the Met collection are Egypt(33286), USA (9563), Iran(6654), Peru(3428), France(2145), Mexico(1560), Indonesia(1442), India(1416), Turkey(956), and Germany(949).</p>
+
             </div>
             <div class="map-content">
                 <div class="met-map" id="country-map">
@@ -101,9 +111,9 @@
         </div>
 
         <!-- SPIRAL --->
-        <!-- <div class="spiral-container" id="dynasty-top">
+        <div class="spiral-container" id="spiral-top">
             <div class="section-title">
-                <h2>How is the Met Collection Distributed by Time Period?</h2>
+                <h3>Time Spiral: the distribution of the artwork based on time </h3>
             </div>
             <div class="spiral-content">
                 <div class="spiral" id="spiral-chart">
@@ -120,17 +130,16 @@
                     passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- Classification-->
         <div class="classification-container" id="classification-top">
             <div class="section-title">
-                <h2>How is the Met Collection Distributed by Time Period?</h2>
+                <h3>Word Cloud: the most used medium in artwork by regions</h3>
             </div>
             <div class="classification-content">
-                <div class="classification" id="classification-chart">
-                </div>
                 <div class="classification-description">
+                  <h5>Pick a country or region: </h5>
                     <select id="collection-selector" name="collection-select">
                         <option value="1" selected>China</option>
                         <option value="2">Europe</option>
@@ -139,7 +148,8 @@
                         <option value="5">Japan</option>
                         <option value="6">Oceania</option>
                     </select>
-                    <br> Dummy Description
+                </div>
+                <div class="classification" id="classification-chart">
                 </div>
             </div>
         </div>
@@ -149,7 +159,7 @@
         <!-- TIMELINES --->
         <div class="timeline-container" id="timeline-top">
             <div class="section-title">
-                <h2>How is the Met Collection Distributed by Artist?</h2>
+                <h3>Artwork Timeline: the distribution of the Met Colletion by Artists</h3>
             </div>
             <div class="bar-artists">
                 <button class="bar-artist-icon" id="degas-timeline-button">
@@ -235,24 +245,36 @@
     })
 
     function scrollToSection() {
-        $("#select-map").click(function () {
-            $('html, body').animate({
-                scrollTop: $("#map-top").offset().top
-            }, 500);
-        });
+    $("#select-home").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#home-top").offset().top
+        }, 500);
+    });
 
-        $("#select-dynasty").click(function () {
-            $('html, body').animate({
-                scrollTop: $("#dynasty-top").offset().top
-            }, 500);
-        });
+      $("#select-map").click(function() {
+          $('html, body').animate({
+              scrollTop: $("#map-top").offset().top
+          }, 500);
+      });
 
-        $("#select-timeline").click(function () {
-            $('html, body').animate({
-                scrollTop: $("#timeline-top").offset().top
-            }, 500);
-        });
-    }
+      $("#select-dynasty").click(function() {
+          $('html, body').animate({
+              scrollTop: $("#spiral-top").offset().top
+          }, 500);
+      });
+      $("#select-medium").click(function() {
+          $('html, body').animate({
+              scrollTop: $("#classification-top").offset().top
+          }, 500);
+      });
+
+
+      $("#select-timeline").click(function() {
+          $('html, body').animate({
+              scrollTop: $("#timeline-top").offset().top
+          }, 500);
+      });
+  }
 </script>
 
 </html>
