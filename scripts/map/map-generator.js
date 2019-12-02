@@ -123,6 +123,78 @@ function renderMap(data){
             tooltip.html("HELLO")
                     .style("display", "none");
           });
+
+        let legendColors = d3.scaleLinear()
+          .domain([0, 20])
+          .interpolate(d3.interpolateHcl)
+          .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
+
+        let array = [...Array(20).keys()]
+
+        const legend = g
+            .append("g")
+            .attr("transform", `translate(50, ${height*0.85})`)
+            .selectAll("legend")
+            .data(array)
+            .enter()
+            .append("rect")
+              .attr("x", function(d, i) {
+                return 10*d;
+              })
+              .attr("y", 0)
+              .attr("width", 10)
+              .attr("height", 8)
+              .style("fill", function(d, i) {
+                return legendColors(d)
+              })
+              .attr("stroke", "none")
+              .attr("opacity", 0)
+              .transition()
+              .style("opacity", 1)
+              .duration(800);;
+
+            const legendTitle = g.append("g")
+                  .attr("transform", `translate(80, ${height*0.85 - 10})`)
+                  .append("text")
+                  .attr("x", 0)
+                  .attr("y", 0)
+                  .text("# OF ARTWORKS")
+                  .attr("fill", "#3528fc")
+                  .attr("fill-opacity", 0)
+                  .transition()
+                  .style("fill-opacity", 1)
+                  .duration(800);
+
+              const legendLabels = g.append("g")
+                   .attr("transform", `translate(50, ${height*0.85 + 20})`)
+                   .selectAll("legend")
+                   .data(array)
+                   .enter()
+                   .append("text")
+                   .attr("x", function(d, i) {
+                     if (i === 0) {
+                       return 0
+                     }
+                     if (i === 19 ) {
+                       return 10*(array.length-2);
+                     }
+                   })
+                   .attr("y", 10)
+                   .text(function(d, i) {
+                     if (i === 0) {
+                       return "0"
+                     }
+                     if (i === 19) {
+                       return "40000"
+                     }
+                   })
+                   .attr("fill", "#3528fc")
+                   .attr("font-sizes", "0.8rem")
+                   .attr("fill-opacity", 0)
+                   .transition()
+                   .style("fill-opacity", 1)
+                   .duration(800);
+
   }
 
   function zoomed(){

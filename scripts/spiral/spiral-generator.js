@@ -69,9 +69,7 @@ function renderSpiral(dynasty, data) {
 
   if (dynasty === ("1500-2000")) {
     maxDomain = 2000;
-  } else if (dynasty === ("bc")) {
-    maxDomain = 200;
-  }
+  } 
 
   // yScale for the bar height
   var yScale = d3.scaleLinear()
