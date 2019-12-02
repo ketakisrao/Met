@@ -16,6 +16,7 @@
     <script src="./scripts/p5/p5.sound.js" type="text/javascript"></script>
     <script src="./scripts/p5/p5.sketch.js" type="text/javascript"></script> -->
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
@@ -29,8 +30,12 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
     <!-- Bootstrap --->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="scripts/popper.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
     <!-- Custom CSS --->
     <link rel="stylesheet" href="./styles/index.css" type="text/css">
@@ -66,45 +71,58 @@
         <div id="p5-sketch-holder" style="position:relative; font-size:50px; z-index:1;"></div>
         <div id="the-met">
             <div class="met-title" id="title">
-                <h1>The Metropolitan Museum of Art Visualizations</h1>
+                <h1>The Metropolitan Museum of Art Visualizations<a tabindex="0" class="btn info-btn"
+                        role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover"
+                        data-content="And here's some amazing content. It's very engaging. Right?">i</a></h1>
+
             </div>
             <div class="met-intro">
-                <p class="met-intro-target">Located in the heart of New York City, the Metropolitan Museum of Art is the largest museum in the United States. The permanent collection consists of artwork created from Ancient Egypt, Ancient Asia, Medieval Europe, to contemporary American
+                <p class="met-intro-target">Located in the heart of New York City, the Metropolitan Museum of Art is the
+                    largest museum in the United States. The permanent collection consists of artwork created from
+                    Ancient Egypt, Ancient Asia, Medieval Europe, to contemporary American
                     art, attracting tourists from all over the world. </p>
-                <p class="met-intro-target">The Met Visualizations is a data visualization project that curates the art works digitally, demonstrates the Met collection in digestible ways and provides interactive art viewing experience for the audience. </p>
-                <p class="met-intro-target">Divided into four sections, the website will tour the audience first by the origins of the artworks(1), followed with time period(2), then by a word cloud of artwork made from different materials(3), and finally present an artwork showcase
+                <p class="met-intro-target">The Met Visualizations is a data visualization project that curates the art
+                    works digitally, demonstrates the Met collection in digestible ways and provides interactive art
+                    viewing experience for the audience. </p>
+                <p class="met-intro-target">Divided into four sections, the website will tour the audience first by the
+                    origins of the artworks(1), followed with time period(2), then by a word cloud of artwork made from
+                    different materials(3), and finally present an artwork showcase
                     of a few selected Met artists(4). </p>
-                <p class="met-intro-target">Data source from<a target="_blank" href="https://github.com/metmuseum/openaccess"> the Met Open Access. </a></p>
+                <p class="met-intro-target">Data source from<a target="_blank"
+                        href="https://github.com/metmuseum/openaccess"> the Met Open Access. </a></p>
             </div>
 
             <div class="btns-container">
                 <button type="button" name="button" id="select-home" class="select-0">0
-                <span class="tooltiptext">intro</span>
-              </button>
+                    <span class="tooltiptext">intro</span>
+                </button>
                 <button type="button" name="button" id="select-map" class="select-1">1
-                <span class="tooltiptext">world map</span>
-              </button>
+                    <span class="tooltiptext">world map</span>
+                </button>
                 <button type="button" name="button" id="select-dynasty" class="select-2">2
-                <span class="tooltiptext">time spiral</span>
-              </button>
+                    <span class="tooltiptext">time spiral</span>
+                </button>
                 <button type="button" name="button" id="select-medium" class="select-3">3
-                <span class="tooltiptext">word cloud</span>
-              </button>
+                    <span class="tooltiptext">word cloud</span>
+                </button>
                 <button type="button" name="button" id="select-timeline" class="select-4">4
-                  <span class="tooltiptext">artwork timeline</span>
+                    <span class="tooltiptext">artwork timeline</span>
                 </button>
             </div>
         </div>
         <!-- MAP --->
         <div class="map-container" id="map-top">
             <div class="section-title">
-                <h3>World Map: the origins of the Met collection</h3>
+                <h3>World Map: the origins of the Met collection<a tabindex="0" class="btn info-btn" role="button" data-toggle="popover" data-trigger="focus"
+                    title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">i</a></h3>
             </div>
             <!-- <div class="section-subtitle">
                 <h4>The origins of the Met collection</h4>
             </div> -->
             <div class="section-description">
-                <p>Based on our data, the top ten origins of the Met collection are Egypt(33286), USA (9563), Iran(6654), Peru(3428), France(2145), Mexico(1560), Indonesia(1442), India(1416), Turkey(956), and Germany(949).</p>
+                <p>Based on our data, the top ten origins of the Met collection are Egypt(33286), USA (9563),
+                    Iran(6654), Peru(3428), France(2145), Mexico(1560), Indonesia(1442), India(1416), Turkey(956), and
+                    Germany(949).</p>
             </div>
             <!-- <p>Hover over the map to find out more information</p> -->
 
@@ -117,7 +135,8 @@
         <!-- SPIRAL --->
         <div class="spiral-container" id="spiral-top">
             <div class="section-title">
-                <h3>Time Spiral: the distribution of the artwork based on time </h3>
+                <h3>Time Spiral: the distribution of the artwork based on time.<a tabindex="0" class="btn info-btn" role="button" data-toggle="popover" data-trigger="focus"
+                    title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">i</a></h3>
             </div>
             <div class="spiral-content">
                 <div class="spiral" id="spiral-chart">
@@ -132,7 +151,8 @@
                         <option value="1500-2000" selected>1500-2000</option>
                     </select>
                     <br>
-                    <p>The Met collects a number of artworks from the B.C. to present. Time Spiral demonstrates how the Met collection is distributed by time period across the world.
+                    <p>The Met collects a number of artworks from the B.C. to present. Time Spiral demonstrates how the
+                        Met collection is distributed by time period across the world.
                     </p>
                     <p>[ legend place holder ]</p>
 
@@ -144,19 +164,20 @@
         <!-- Classification-->
         <div class="classification-container" id="classification-top">
             <div class="section-title">
-                <h3>Word Cloud: the most used mediums in artwork by regions</h3>
+                <h3>Word Cloud: the most used mediums in artwork by regions.<a tabindex="0" class="btn info-btn" role="button" data-toggle="popover" data-trigger="focus"
+                    title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">i</a></h3>
             </div>
             <div class="classification-content">
                 <!-- <div class="classification-description"> -->
-                    <span>Pick a culture: </span>
-                    <select id="collection-selector" name="collection-select">
-                        <option value="1" selected>Chinese</option>
-                        <option value="2">European</option>
-                        <option value="3">Greek/Roman</option>
-                        <option value="4">Islam</option>
-                        <option value="5">Japanese</option>
-                        <option value="6">Oceania</option>
-                    </select>
+                <span>Pick a culture: </span>
+                <select id="collection-selector" name="collection-select">
+                    <option value="1" selected>Chinese</option>
+                    <option value="2">European</option>
+                    <option value="3">Greek/Roman</option>
+                    <option value="4">Islam</option>
+                    <option value="5">Japanese</option>
+                    <option value="6">Oceania</option>
+                </select>
                 <!-- </div> -->
                 <div class="classification" id="classification-chart">
                 </div>
@@ -168,7 +189,8 @@
         <!-- TIMELINES --->
         <div class="timeline-container" id="timeline-top">
             <div class="section-title">
-                <h3>Artwork Timeline: the distribution of the Met Collection by Artists</h3>
+                <h3>Artwork Timeline: the distribution of the Met Collection by Artists.<a tabindex="0" class="btn info-btn" role="button" data-toggle="popover" data-trigger="focus"
+                    title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">i</a></h3>
             </div>
             <div class="bar-artists">
                 <button class="bar-artist-icon" id="degas-timeline-button">
@@ -245,44 +267,49 @@
     //     reset: true
     // });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         doAjaxMapCall();
         doAjaxSpiralCall("1500-2000");
         doAjaxClassification(1);
         renderBarTimeline("hokusai");
         scrollToSection();
+        $("[data-toggle=popover]").popover();
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        })
     })
 
     function scrollToSection() {
-        $("#select-home").click(function() {
+        $("#select-home").click(function () {
             $('html, body').animate({
                 scrollTop: $("#home-top").offset().top
             }, 500);
         });
 
-        $("#select-map").click(function() {
+        $("#select-map").click(function () {
             $('html, body').animate({
                 scrollTop: $("#map-top").offset().top
             }, 500);
         });
 
-        $("#select-dynasty").click(function() {
+        $("#select-dynasty").click(function () {
             $('html, body').animate({
                 scrollTop: $("#spiral-top").offset().top
             }, 500);
         });
-        $("#select-medium").click(function() {
+        $("#select-medium").click(function () {
             $('html, body').animate({
                 scrollTop: $("#classification-top").offset().top
             }, 500);
         });
 
 
-        $("#select-timeline").click(function() {
+        $("#select-timeline").click(function () {
             $('html, body').animate({
                 scrollTop: $("#timeline-top").offset().top
             }, 500);
         });
+
     }
 </script>
 
