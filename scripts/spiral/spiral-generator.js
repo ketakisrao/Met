@@ -16,13 +16,29 @@ function renderSpiral(dynasty, data) {
   //var colors = ["#FF7858", "#6DB8BD", "#956DBD"];
   if (dynasty === "bc") {
     var colors = d3.scaleLinear()
+                  .domain([-4300,0])
                   .interpolate(d3.interpolateHcl)
-                  .range([d3.rgb("#000000"), d3.rgb('#000000')]);
-  }else{
+                  .range([d3.rgb("#051c95"), d3.rgb('#d7f5fb')]);
+  }else if(dynasty === "0-500"){
     var colors = d3.scaleLinear()
-                  .domain([0, 2000])
+                  .domain([0,500])
                   .interpolate(d3.interpolateHcl)
-                  .range([d3.rgb("#d7f5fb"), d3.rgb('#051c95')]);
+                  .range([d3.rgb("#4c059d"), d3.rgb('#dbbcfe')]);
+  }else if(dynasty === "500-1000"){
+    var colors = d3.scaleLinear()
+                  .domain([500, 1000])
+                  .interpolate(d3.interpolateHcl)
+                  .range([d3.rgb("#051c95"), d3.rgb('#d7f5fb')]);
+  }else if(dynasty === "1000-1500"){
+    var colors = d3.scaleLinear()
+                  .domain([1000, 1500])
+                  .interpolate(d3.interpolateHcl)
+                  .range([d3.rgb("#4c059d"), d3.rgb('#dbbcfe')]);
+  }else if(dynasty === "1500-2000"){
+    var colors = d3.scaleLinear()
+                  .domain([1500, 2000])
+                  .interpolate(d3.interpolateHcl)
+                  .range([d3.rgb("#051c95"), d3.rgb('#d7f5fb')]);
   }
 
   var r = d3.min([width, height - 100]) / 2 - 40;

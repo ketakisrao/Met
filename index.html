@@ -125,11 +125,11 @@
                 <div class="spiral-description">
                     <p>Select a time period:</p>
                     <select id="dynasty-selector" name="dynasty-select">
-                        <option value="bc" selected>BC</option>
-                        <option value="0-500" selected>0-500</option>
+                        <option value="bc">BC</option>
+                        <option value="0-500">0-500</option>
                         <option value="500-1000">500-1000</option>
                         <option value="1000-1500">1000-1500</option>
-                        <option value="1500-2000">1500-2000</option>
+                        <option value="1500-2000" selected>1500-2000</option>
                     </select>
                     <br>
                     <p>The Met collects a number of artworks from the B.C. to present. Time Spiral demonstrates how the Met collection is distributed by time period across the world.
@@ -247,7 +247,7 @@
 
     $(document).ready(function() {
         doAjaxMapCall();
-        doAjaxSpiralCall("0-500");
+        doAjaxSpiralCall("1500-2000");
         doAjaxClassification(1);
         renderBarTimeline("hokusai");
         scrollToSection();
