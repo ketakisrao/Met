@@ -142,7 +142,9 @@ function renderSpiral(dynasty, data) {
     .append("textPath")
     // only add for the first of each month
     .filter(function(d){
-      if (d["Date"] % 10 === 0){
+      if (dynasty === "bc" && d["Date"] % 100 === 0){
+        return true;
+      } else if (dynasty !== "bc" && d["Date"] % 10 === 0) {
         return true;
       }
       return false;
