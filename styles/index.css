@@ -365,13 +365,17 @@ body {
 }
 
 .section-description{
-  width:50vw;
+  /* width:50vw; */
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
   z-index: 2;
+}
+.section-description p {
+    width: 50vw;
+    
 }
 
 /* MAP */
@@ -562,6 +566,6 @@ body {
 .classification {
   margin: 0 auto;
     width: 80vw;
-    height: 500px;
+    height: 600px;
     z-index: 2;
 }
