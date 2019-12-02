@@ -526,6 +526,7 @@ body {
   width: 100vw;
   /* height: 100vh; */
   z-index: 2;
+  text-align: center;;
 }
 
 .classification-container h3{
@@ -533,15 +534,14 @@ body {
   margin-bottom: 40px;
 }
 
-.classification-description{
-  margin-left: 35%;
-  display:flex;
+/* .classification-description{
+  
   z-index: 2;
-}
+} */
 
-.classification-description h4{
+/* .classification-description h4{
   text-align: center;
-}
+} */
 
 .classification {
   margin: 0 auto;
