@@ -25,7 +25,7 @@ function renderSpiral(dynasty, data) {
                   .range([d3.rgb("#d7f5fb"), d3.rgb('#051c95')]);
   }
 
-  var r = d3.min([width, height]) / 2 - 40;
+  var r = d3.min([width, height - 100]) / 2 - 40;
 
   var radius = d3.scaleLinear()
     .domain([start, end])
@@ -168,43 +168,43 @@ function renderSpiral(dynasty, data) {
 
   tooltip.append('div')
         .attr('class', 'date');
-  tooltip.append('div')
+    tooltip.append('div')
         .attr('class', 'value');
 
-  svg.selectAll("rect")
-      .on('mouseover', function(d) {
-          tooltip.select('.date').html("<b>Year: " + d["Date"] + "</b>");
-          tooltip.select('.value').html("<b># Artworks:" + d["Count"] + "</b>");
+    svg.selectAll("rect")
+        .on('mouseover', function (d) {
+            tooltip.select('.date').html("<b>Year: " + d["Date"] + "</b>");
+            tooltip.select('.value').html("<b># Artworks:" + d["Count"] + "</b>");
 
-          tooltip.style('display', 'block')
-                  .style("left", (d3.event.pageX + 10) + "px")
-                  .style("top", (d3.event.pageY - 28) + "px")
-                  .style('opacity', 1);
+            tooltip.style('display', 'block')
+                .style("left", (d3.event.pageX + 10) + "px")
+                .style("top", (d3.event.pageY - 28) + "px")
+                .style('opacity', 1);
 
-          d3.select(this)
-                  .style("fill","#FFFFFF")
-                  .style("stroke","#01136f")
-                  .style("stroke-width","2px");
+            d3.select(this)
+                .style("fill", "#FFFFFF")
+                .style("stroke", "#01136f")
+                .style("stroke-width", "2px");
 
-      })
-      .on('mousemove', function(d) {
-          tooltip.style('top', (d3.event.pageY + 10) + 'px')
-                  .style('left', (d3.event.pageX - 25) + 'px');
-      })
-      .on('mouseout', function(d) {
-          d3.selectAll("rect")
-          .style("fill", function(d) {
-            //return d3.interpolateSpectral(parseInt(d["Group"])/maxGroup);
-            if (d) {
-              return colors(parseInt(d["Date"]));
-            }
-            return "none";
-          })
-          .style("stroke", "none")
+        })
+        .on('mousemove', function (d) {
+            tooltip.style('top', (d3.event.pageY + 10) + 'px')
+                .style('left', (d3.event.pageX - 25) + 'px');
+        })
+        .on('mouseout', function (d) {
+            d3.selectAll("rect")
+                .style("fill", function (d) {
+                    //return d3.interpolateSpectral(parseInt(d["Group"])/maxGroup);
+                    if (d) {
+                        return colors(parseInt(d["Date"]));
+                    }
+                    return "none";
+                })
+                .style("stroke", "none")
 
-          // tooltip.style('display', 'block');
-          tooltip.style('opacity', 0);
-      });
+            // tooltip.style('display', 'block');
+            tooltip.style('opacity', 0);
+        });
 
 
 }

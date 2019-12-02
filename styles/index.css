@@ -338,7 +338,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   z-index: 2;
 }
 
@@ -401,13 +401,13 @@ body {
 /* Time Spiral */
 .spiral-container{
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   z-index: 2;
 }
 
 .spiral-container h3{
   margin-top: 30px;
-  margin-bottom: 40px;
+  /* margin-bottom: 20px; */
 }
 
 /* Timeline */
@@ -479,7 +479,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  height: 80vh;
+  /* height: 80vh; */
   width: 90vw;
   text-align: center;
   margin-bottom: 10px;
@@ -489,7 +489,7 @@ body {
 
 .spiral {
   width: 65vw;
-  height: 80vh;
+  height: 600px;
   z-index: 2;
 }
 
