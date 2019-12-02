@@ -28,7 +28,7 @@ function renderMap(data){
         ])
         .on("zoom", zoomed);
 
-    map.call(zoom);
+    //map.call(zoom);
 
     const svg = map.append("svg")
         .attr("width", width)
