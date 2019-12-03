@@ -1,3 +1,4 @@
+// Listeners for individual buttons
 $(document).on('click', '#degas-timeline-button', function () {
     renderBarTimeline("degas");
     $('.bar-artist-icon').removeClass("active");
@@ -28,9 +29,9 @@ $(document).on('click', '#pencz-timeline-button', function () {
     $(this).addClass("active");
 });
 
+// Performs ajax request for artist data
 function renderBarTimeline(id) {
 
-    // !!! Note CORS enabled for localhost
     let address = "https://met-server-nyc.herokuapp.com/timeline?artist=" + id;
 
     var data = $.ajax({

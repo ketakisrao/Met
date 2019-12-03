@@ -7,8 +7,6 @@ function generateBarTimeline(data) {
   var width = constWidth - margin.left - margin.right,
       height = constHeight*0.5 - margin.top - margin.bottom;
 
-  var strokeWidth = 10;
-
   // Remove old stuff if exists
   d3.select("#bar-svg").selectAll("*").remove();
 
@@ -47,7 +45,6 @@ function generateBarTimeline(data) {
     })
 
     // Defines the xScale max
-    //xScale.domain(d3.extent(data, function(d) { return d["Object End Date"]; }));
     xScale.domain([min-2, max]);
 
     // Defines the yScale max
@@ -63,6 +60,8 @@ function generateBarTimeline(data) {
 
     var yearCounter = {};
     var imgSize = 5;
+
+    // Append the images
     var images = svg.selectAll("images")
                     .data(data)
                     .enter()
@@ -94,7 +93,8 @@ function generateBarTimeline(data) {
                     .attr("y", 0)
                     .attr("width", "100%")
                     .attr("height", "100%")
-
+    
+    // Mouseover triggers
     images.on("mouseover", function(d) {
             let artTitle = d["Title"] ? d["Title"] : "Untitled";
             let maxChar = 40;

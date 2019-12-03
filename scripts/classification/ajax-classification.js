@@ -7,11 +7,10 @@ $(document).on('change', '#collection-selector', function () {
     }
 });
 
+// Performs ajax request for culture-medium data
 function doAjaxClassification(id) {
 
-    // !!! Note CORS enabled for localhost
     let address = "https://met-server-nyc.herokuapp.com/classification?id=" + id;
-
 
     var data = $.ajax({
         url: address,
