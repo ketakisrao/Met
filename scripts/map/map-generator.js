@@ -2,34 +2,24 @@ function renderMap(data){
 
     const map = d3.select("#country-map");
 
+    // Dimensions set up
     const width = map.node().parentNode.parentNode.getBoundingClientRect().width * 0.7;
     const height = map.node().parentNode.parentNode.getBoundingClientRect().height * 0.7;
     var border = 1;
     var bordercolor = 'white';
 
+    // Projections for map
     const projection = d3.geoMercator()
         .translate([width / 2, height / 2]);
     const path = d3.geoPath().projection(projection);
 
+    // Color scale
     var color = d3.scaleLinear()
                   .domain([0, 1000])
                   .interpolate(d3.interpolateHcl)
                   .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
 
-    const zoom = d3.zoom()
-        .scaleExtent([1, 3])
-        .translateExtent([
-            [0, 0],
-            [width, height]
-        ])
-        .extent([
-            [0, 0],
-            [width, height]
-        ])
-        .on("zoom", zoomed);
-
-    //map.call(zoom);
-
+    // Main components
     const svg = map.append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -42,28 +32,21 @@ function renderMap(data){
         .style("z-index", "10")
         .text("a simple tooltip");
 
-    // var borderPath = svg.append("rect")
-    //     .attr("x", 0)
-    //     .attr("y", 0)
-    //     .attr("height", h)
-    //     .attr("width", w)
-    //     .style("stroke", bordercolor)
-    //     .style("fill", "none")
-    //     .style("stroke-width", border);
-
     const g = svg.append("g")
         .attr("id", "country-paths");
 
-    // Read all the data
+    // Read all the data async
     d3.queue()
       .defer(d3.json, "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")  // World shape
       .await(ready);
 
+    // After reading, do:
     function ready(error, world) {
       if (error) throw error;
 
       var countries = topojson.feature(world, world.objects.countries).features;
 
+      // Plotting each country
       g.selectAll(".country")
           .data(countries)
           .enter().insert("path", ".graticule")
@@ -88,7 +71,6 @@ function renderMap(data){
             let countryName = d.properties.name;
             let idx = countryIndex(countryName, data);
             if (idx !== -1) {
-              var currentState = this;
               d3.select(this)
                 .style('fill', "#1005c5");
 
@@ -124,14 +106,16 @@ function renderMap(data){
                     .style("display", "none");
           });
 
+        // Scale for legend
         let legendColors = d3.scaleLinear()
           .domain([0, 20])
           .interpolate(d3.interpolateHcl)
           .range([d3.rgb("#c6c2f4"), d3.rgb('#3528fc')]);
 
         let array = [...Array(20).keys()]
-
-        const legend = g
+        
+        // Legend-related components
+        let legend = g
             .append("g")
             .attr("transform", `translate(50, ${height*0.85})`)
             .selectAll("legend")
@@ -153,54 +137,52 @@ function renderMap(data){
               .style("opacity", 1)
               .duration(800);;
 
-            const legendTitle = g.append("g")
-                  .attr("transform", `translate(80, ${height*0.85 - 10})`)
-                  .append("text")
-                  .attr("x", 0)
-                  .attr("y", 0)
-                  .text("# OF ARTWORKS")
-                  .attr("fill", "#3528fc")
-                  .attr("fill-opacity", 0)
-                  .transition()
-                  .style("fill-opacity", 1)
-                  .duration(800);
+        let legendTitle = g.append("g")
+            .attr("transform", `translate(80, ${height*0.85 - 10})`)
+            .append("text")
+            .attr("x", 0)
+            .attr("y", 0)
+            .text("# OF ARTWORKS")
+            .attr("fill", "#3528fc")
+            .attr("fill-opacity", 0)
+            .transition()
+            .style("fill-opacity", 1)
+            .duration(800);
 
-              const legendLabels = g.append("g")
-                   .attr("transform", `translate(50, ${height*0.85 + 20})`)
-                   .selectAll("legend")
-                   .data(array)
-                   .enter()
-                   .append("text")
-                   .attr("x", function(d, i) {
-                     if (i === 0) {
-                       return 0
-                     }
-                     if (i === 19 ) {
-                       return 10*(array.length-2);
-                     }
-                   })
-                   .attr("y", 10)
-                   .text(function(d, i) {
-                     if (i === 0) {
-                       return "0"
-                     }
-                     if (i === 19) {
-                       return "40000"
-                     }
-                   })
-                   .attr("fill", "#3528fc")
-                   .attr("font-sizes", "0.8rem")
-                   .attr("fill-opacity", 0)
-                   .transition()
-                   .style("fill-opacity", 1)
-                   .duration(800);
+        const legendLabels = g.append("g")
+            .attr("transform", `translate(50, ${height*0.85 + 20})`)
+            .selectAll("legend")
+            .data(array)
+            .enter()
+            .append("text")
+            .attr("x", function(d, i) {
+              if (i === 0) {
+                return 0
+              }
+              if (i === 19 ) {
+                return 10*(array.length-2);
+              }
+            })
+            .attr("y", 10)
+            .text(function(d, i) {
+              if (i === 0) {
+                return "0"
+              }
+              if (i === 19) {
+                return "40000"
+              }
+            })
+            .attr("fill", "#3528fc")
+            .attr("font-sizes", "0.8rem")
+            .attr("fill-opacity", 0)
+            .transition()
+            .style("fill-opacity", 1)
+            .duration(800);
 
   }
 
-  function zoomed(){
-    g.attr("transform", d3.event.transform);
-  }
-
+  // Helper function to determine whether this country 
+  // has data from our src file
   function countryIndex(countryName, data) {
     let idx = data.findIndex(field => {
       let countryInData = capitalizeWords(field["country"]);
@@ -213,6 +195,7 @@ function renderMap(data){
     return idx;
   }
 
+  // Capitalizes the string 
   function capitalizeWords(str){
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }

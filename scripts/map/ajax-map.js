@@ -1,6 +1,5 @@
+// Performs ajax request for country count data
 function doAjaxMapCall() {
-
-  // !!! Note CORS enabled for localhost
   let address = "https://met-server-nyc.herokuapp.com/country-counts";
 
   var data = $.ajax({

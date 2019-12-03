@@ -1,12 +1,12 @@
+// Watcher for dropdown changes
 $(document).on('change','#dynasty-selector',function(){
   doAjaxSpiralCall($(this).val());
 });
 
+// Performs ajax request for dynasty-related APIs
 function doAjaxSpiralCall(dynasty) {
 
-  // !!! Note CORS enabled for localhost
   let address = "https://met-server-nyc.herokuapp.com/counts-by-date?dynasty=" + dynasty;
-  //let address = "http://127.0.0.1:5000/counts-by-date?dynasty=" + dynasty;
 
   var data = $.ajax({
     url: address,

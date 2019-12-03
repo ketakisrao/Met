@@ -355,6 +355,10 @@ body {
   z-index: 2;
 }
 
+.section-title b {
+  color: black;
+}
+
 .section-subtitle{
   text-align: center;
   display: flex;
@@ -372,6 +376,10 @@ body {
   justify-content: center;
   margin-bottom: 5px;
   z-index: 2;
+}
+
+.section-description b{
+  color: #3329F2;
 }
 .section-description p {
     width: 50vw;
