@@ -208,7 +208,7 @@ function renderSpiral(dynasty, data) {
                 .style('left', (d3.event.pageX - 25) + 'px');
         })
         .on('mouseout', function (d) {
-            d3.selectAll("rect")
+            d3.selectAll("#spiral-chart rect")
                 .style("fill", function (d) {
                     //return d3.interpolateSpectral(parseInt(d["Group"])/maxGroup);
                     if (d) {
