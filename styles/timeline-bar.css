@@ -21,6 +21,12 @@
   outline: none;
 }
 
+.bar-artist-icon:hover {
+  background-color: #3528fc;
+  transition: 0.3s;
+  color: white;
+}
+
 .bar-artists .active {
   border: 1px solid #3528fc;
   width: 15vw;
